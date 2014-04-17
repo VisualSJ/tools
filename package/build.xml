@@ -1,0 +1,359 @@
+<?xml version="1.0"?>
+<project name="Javascript compress project" basedir="." default="module">
+  <taskdef name="jscomp" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="./compiler/compiler.jar"/>
+  <target name="module">
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/actions.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions/CCAction.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions/CCActionInterval.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions/CCActionInstant.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions/CCActionCamera.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions/CCActionEase.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions/CCActionCatmullRom.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions/CCActionTween.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/actions3d.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions3d/CCActionGrid.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions3d/CCActionGrid3D.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions3d/CCActionTiledGrid.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/actions3d/CCActionPageTurn3D.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/audio.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/audio/CCAudio.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/clipping-nodes.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/clipping-nodes/CCClippingNode.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/compression.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/compression/ZipUtils.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/compression/base64.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/compression/gzip.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/compression/zlib.min.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/core.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/CCBoot.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/utils/BinaryLoader.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/Base64Images.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCClass.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCCommon.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/cocoa/CCGeometry.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCSAXParser.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCLoaders.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCConfig.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/miniFramework.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCMacro.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCTypesWebGL.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCTypesPropertyDefine.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCTypes.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCEGLView.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCScreen.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCVisibleRect.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCInputManager.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/platform/CCInputExtension.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/cocoa/CCAffineTransform.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/support/CCPointExtension.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/support/CCVertex.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/support/TransformUtils.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/event-manager/CCTouch.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/event-manager/CCEvent.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/event-manager/CCEventListener.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/event-manager/CCEventManager.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/event-manager/CCEventExtension.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/base-nodes/BaseNodesWebGL.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/base-nodes/BaseNodesPropertyDefine.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/base-nodes/CCNode.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/base-nodes/CCAtlasNode.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/textures/TexturesWebGL.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/textures/TexturesPropertyDefine.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/textures/CCTexture2D.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/textures/CCTextureCache.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/textures/CCTextureAtlas.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/scenes/CCScene.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/scenes/CCLoaderScene.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/layers/CCLayerWebGL.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/layers/CCLayerPropertyDefine.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/layers/CCLayer.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/sprites/SpritesWebGL.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/sprites/SpritesPropertyDefine.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/sprites/CCSprite.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/sprites/CCSpriteBatchNode.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/sprites/CCAnimation.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/sprites/CCAnimationCache.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/sprites/CCSpriteFrame.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/sprites/CCSpriteFrameCache.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/CCConfiguration.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/CCDirector.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/CCDirectorWebGL.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/CCCamera.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/CCScheduler.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/CCDrawingPrimitivesCanvas.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/CCDrawingPrimitivesWebGL.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/labelttf/LabelTTFWebGL.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/labelttf/LabelTTFPropertyDefine.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/labelttf/CCLabelTTF.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/core/CCActionManager.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/effects.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/effects/CCGrid.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/effects/CCGrabber.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/kazmath.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/utility.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/vec2.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/vec3.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/vec4.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/ray2.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/mat3.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/mat4.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/plane.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/quaternion.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/aabb.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/gl/mat4stack.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/kazmath/gl/matrix.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/labels.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/labels/CCLabelAtlas.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/labels/CCLabelBMFont.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/menus.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/menus/CCMenuItem.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/menus/CCMenu.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/motion-streak.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/motion-streak/CCMotionStreak.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/node-grid.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/node-grid/CCNodeGrid.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/parallax.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/parallax/CCParallaxNode.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/particle.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/particle/CCPNGReader.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/particle/CCTIFFReader.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/particle/CCParticleSystem.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/particle/CCParticleExamples.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/particle/CCParticleBatchNode.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/physics.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/physics/CCPhysicsSprite.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/physics/CCPhysicsDebugNode.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/progress-timer.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/progress-timer/CCProgressTimer.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/progress-timer/CCActionProgressTimer.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/render-texture.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/render-texture/CCRenderTexture.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/shaders.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/shaders/CCShaders.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/shaders/CCShaderCache.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/shaders/CCGLProgram.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/shaders/CCGLStateCache.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/shape-nodes.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/shape-nodes/CCDrawNode.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/text-input.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/text-input/CCIMEDispatcher.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/text-input/CCTextFieldTTF.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/tilemap.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/tilemap/CCTGAlib.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/tilemap/CCTMXTiledMap.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/tilemap/CCTMXXMLParser.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/tilemap/CCTMXObjectGroup.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/tilemap/CCTMXLayer.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/transitions.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/transitions/CCTransition.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/transitions/CCTransitionProgress.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/cocos2d/transitions/CCTransitionPageTurn.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/ccbreader.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCNodeLoader.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCBReaderUtil.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCControlLoader.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCSpriteLoader.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCNodeLoaderLibrary.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCBReader.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCBValue.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCBKeyframe.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCBSequence.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCBRelativePositioning.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccb-reader/CCBAnimationManager.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/editbox.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/editbox/CCdomNode.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/editbox/CCEditBox.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/ccui.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/system/CocosGUI.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/base-classes/UIWidget.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/layouts/UILayout.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/layouts/UILayoutParameter.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/layouts/UILayoutDefine.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/system/UIHelper.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UIButton.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UICheckBox.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UIImageView.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UILoadingBar.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UISlider.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UIText.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UITextAtlas.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UITextBMFont.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UITextField.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/UIRichText.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/scroll-widget/UIScrollView.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/scroll-widget/UIListView.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/ccui/uiwidgets/scroll-widget/UIPageView.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/cocostudio.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/components/CCComponent.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/components/CCComponentContainer.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/CocoStudio.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/utils/CCArmatureDefine.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/utils/CCDataReaderHelper.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/utils/CCSpriteFrameCacheHelper.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/utils/CCTransformHelp.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/utils/CCTweenFunction.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/utils/CCUtilMath.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/utils/CCArmatureDataManager.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/datas/CCDatas.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/display/CCDecorativeDisplay.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/display/CCDisplayFactory.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/display/CCDisplayManager.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/display/CCSkin.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/animation/CCProcessBase.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/animation/CCArmatureAnimation.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/animation/CCTween.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/physics/CCColliderDetector.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/CCArmature.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/armature/CCBone.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/action/CCActionFrame.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/action/CCActionManager.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/action/CCActionNode.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/action/CCActionObject.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/components/CCComAttribute.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/components/CCComAudio.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/components/CCComController.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/components/CCComRender.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/trigger/ObjectFactory.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/trigger/TriggerBase.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/trigger/TriggerMng.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/trigger/TriggerObj.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/reader/GUIReader.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/cocostudio/reader/SceneReader.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/gui.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControl.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControlButton.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControlUtils.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCInvocation.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCScale9Sprite.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCMenuPassive.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControlSaturationBrightnessPicker.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControlHuePicker.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControlColourPicker.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControlSlider.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControlSwitch.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControlStepper.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/control-extension/CCControlPotentiometer.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/scrollview/CCScrollView.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/scrollview/CCSorting.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/gui/scrollview/CCTableView.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/pluginx.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/protocols/Config.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/protocols/PluginUtils.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/protocols/PluginProtocol.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/protocols/ProtocolSocial.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/protocols/ProtocolAds.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/protocols/ProtocolAnalytics.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/protocols/PluginFactory.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/protocols/PluginManager.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/plugins/SocialWeibo.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/plugins/SocialQQWeibo.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/plugins/SocialQzone.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/plugins/SocialTwitter.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/plugins/SocialFacebook.js" />
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/extensions/pluginx/plugins/AnalyticsFlurry.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/box2d.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/external/box2d/box2d.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/chipmunk.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/external/chipmunk/chipmunk.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/socketio.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/external/socketio/socket.io.min.js" />
+      </sources>
+    </jscomp>
+    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/debugger.js">
+      <sources dir="/">
+        <file name="/Users/visualSJ/project/cocos2d-js/frameworks/cocos2d-html5/CCDebugger.js" />
+      </sources>
+    </jscomp>
+  </target>
+</project>

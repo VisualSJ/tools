@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Module</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<style>
+    body {
+        padding: 40px;
+    }
+</style>
+
+<table id="table" class="table">
+
+</table>
+<br/>
+<a onclick="return Load(this);" type="button" class="btn btn-primary" target="_blank">Download</a>
+<script>
+
+    var pageSet = {
+        html: '',
+        list: {},
+        _rule: {},
+        _template: '',
+        _check: 0,
+        _table: document.getElementById("table")
+    };
+
+    pageSet.init = function () {
+        pageSet.createHTML();
+    };
+
+    pageSet.list = {
+        "core": [326, 'Cocos2d engine core', true],
+        "debugger": [17, 'Debugging node', false],
+        "kazmath": [30, 'Math lib for webgl', false],
+        "shaders": [24, 'Shaders', false],
+        "render-texture": [10, 'render-texture for cache', false],
+        "labels": [19, 'Labels', false],
+        "motion-streak": [6, 'Motion-streak effect', false],
+        "node-grid": [1, 'Base node of effects', false],
+        "shape-nodes": [17, 'Base node of Drownode', false],
+        "clipping-nodes": [6, 'Clipping nodes', false],
+        "effects": [12, 'Some effects', false],
+        "actions": [53, 'Useful actions', false],
+        "actions3d": [22, 'Some 3D actions of webgl mode', false],
+        "progress-timer": [15, 'Progress timer', false],
+        "transitions": [24, 'Scene transitions', false],
+        "compression": [31, 'Compression of tilemap and particle', false],
+        "particle": [2, 'Particle effects', false],
+        "text-input": [10, 'Text input', false],
+        "menus": [20, 'Menus', false],
+        "tilemap": [10, 'TileMap', false],
+        "parallax": [2, 'Parallax layers', false],
+        "audio": [13, 'Audio', false],
+        "gui": [92, 'GUI', false],
+        "ccbreader": [68, 'The reader of CocosBuilder', false],
+        "editbox": [16, 'Edit Box', false],
+        "ccui": [177, 'Cocos UI widget', false],
+        "cocostudio": [137, 'The reader of CocoStudio', false],
+        "pluginx": [16, 'Plugin-X', false],
+        "physics": [5, 'Physics node for Box2d and Chipmunk', false],
+        "socketio": [44, 'ScoketIO', false],
+        "box2d": [223, 'Box2d physics lib', false],
+        "chipmunk": [56, 'Chipmunk physics lib', false]
+    };
+
+    pageSet._rule = {
+        "core": [],
+        "debugger": ['core'],
+        "actions": ['core'],
+        "audio": ['core'],
+        "compression": ['core'],
+        "effects": ['core'],
+        "kazmath": ['core'],
+        "labels": ['labels'],
+        "menus": ['core', 'actions'],
+        "node-grid": ['core'],
+        "parallax": ['core'],
+        "particle": ['core', 'compression'],
+        "progress-timer": ['core', 'actions'],
+        "render-texture": ['core'],
+        "shaders": ['core', 'kazmath'],
+        "shape-nodes": ['core'],
+        "text-input": ['core'],
+        "tilemap": ['core', 'compression'],
+        "transitions": ['core', 'actions', 'render-texture', 'progress-timer'],
+        "gui": ['core', 'clipping-nodes', 'render-texture', 'actions', 'progress-timer'],
+        "pluginx": ['core'],
+        "socketio": [],
+        "actions3d": ['core', 'kazmath', 'shaders', 'actions', 'effects', 'render-texture'],
+        "clipping-nodes": ['core', 'shape-nodes'],
+        "motion-streak": ['core', 'shaders', 'kazmath', 'labels'],
+        "physics": ['core', 'shape-nodes'],
+        "ccbreader": ['core', 'audio', 'gui', 'menus', 'particle', 'actions'],
+        "editbox": ['core', 'gui'],
+        "ccui": ['core', 'gui', 'actions', 'labels', 'text-input', 'clipping-nodes'],
+        "cocostudio": ['core', 'tilemap', 'particle', 'shape-nodes', 'ccui'],
+        "box2d": ['core', 'physics'],
+        "chipmunk": ['core', 'physics']
+    };
+
+    pageSet.Html = function(name, result){
+
+        var _tr = document.createElement('tr');
+
+        var _td = document.createElement('td');
+        _td.style.width = '30px';
+        var _input = document.createElement('input');
+        _input.id = name;
+        _input.onclick = function(){
+            pageSet._check = 0;
+            return pageSet.checkDown.call(this, name, result);
+        };
+        _input.type = 'checkbox';
+        if(name == 'core') _input.checked = true;
+        _td.appendChild(_input);
+        _tr.appendChild(_td);
+
+        _td = document.createElement('td');
+        _td.style.width = '200px';
+        _td.innerHTML = name;
+        _tr.appendChild(_td);
+
+        _td = document.createElement('td');
+        _td.innerHTML = result[0] + 'KB';
+        _td.style.width = '40px';
+        _td.style['text-align'] = 'right';
+        _tr.appendChild(_td);
+
+        _td = document.createElement('td');
+        _td.style['padding-left'] = '40px';
+        _td.innerHTML = result[1];
+        _tr.appendChild(_td);
+
+        pageSet._table.appendChild(_tr);
+    };
+
+    pageSet.createHTML = function(){
+        for(var p in pageSet.list){
+            pageSet.Html(p, pageSet.list[p]);
+        }
+    };
+
+    pageSet.checkDown = function(name, result){
+        if(name == 'core' || pageSet._check++ > 4){
+            return false;
+        }
+
+        if(!!this.checked)
+            pageSet._rule[name].forEach(function(_y){
+                var _t = document.getElementById(_y);
+                var _l = pageSet.list[name];
+                _t.checked = true;
+                pageSet.checkDown.call(_t, _y, _l);
+                _l[2] = true;
+            });
+
+        result[2] = !!this.checked;
+    };
+
+    pageSet.init();
+
+    var Load = function(_a){
+        var _s = 'download_.js?file=';
+        for(var p in pageSet.list){
+            if(pageSet.list[p][2])
+                _s += p + ',';
+        }
+        _s = _s.substr(0, _s.length-1);
+        _a.href = _s;
+    };
+</script>
+
+</body>
+</html>

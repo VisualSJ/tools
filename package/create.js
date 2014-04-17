@@ -75,7 +75,112 @@ var app = {
 
             console.log('Success ant. The total number of files : %d', app._num);
 
+            app.createJSON();
+
         });
+    },
+    createJSON: function () {
+
+        var _module = {
+            info: []
+        };
+
+        //获取文件大小
+        app._sort.forEach(function (_file) {
+            var _stat = fs.statSync('./modules/' + _file + '.js');
+            _module.info.push({
+                name: _file,
+                size: ((_stat.size / 1000) | 0 ).toString() + 'KB',
+                checked: 0
+            });
+        });
+
+        //提取依赖关系
+        var _moduleConfig = app._readJson(path.join(app._dir, '../moduleConfig.json')).module;
+        _module.info.forEach(function (_info, i) {
+            var _a = _moduleConfig[_info.name]
+            if (_a) {
+                _a = _a.filter(function (_t) {
+                    return !/\.js$/.test(_t);
+                });
+                _module.info[i].rule = _a;
+            } else {
+                _module.info[i].rule = [];
+            }
+            _module.info[i].info = app._info[_info.name] || 'Unknow';
+        });
+
+
+        fs.writeFileSync('./module.js', "var module=" + JSON.stringify(_module));
+
+    },
+    _sort: [
+        "core",
+        "debugger",
+        "kazmath",
+        "shaders",
+        "render-texture",
+        "labels",
+        "motion-streak",
+        "node-grid",
+        "shape-nodes",
+        "clipping-nodes",
+        "effects",
+        "actions",
+        "actions3d",
+        "progress-timer",
+        "transitions",
+        "compression",
+        "particle",
+        "text-input",
+        "menus",
+        "tilemap",
+        "parallax",
+        "audio",
+        "gui",
+        "ccbreader",
+        "editbox",
+        "ccui",
+        "cocostudio",
+        "pluginx",
+        "physics",
+        "socketio",
+        "box2d",
+        "chipmunk"
+    ],
+    _info: {
+        "core": 'Cocos2d engine core',
+        "debugger": 'Debugging node',
+        "kazmath": 'Math lib for webgl',
+        "shaders": 'Shaders',
+        "render-texture": 'render-texture for cache',
+        "labels": 'Labels',
+        "motion-streak": 'Motion-streak effect',
+        "node-grid": 'Base node of effects',
+        "shape-nodes": 'Base node of Drownode',
+        "clipping-nodes": 'Clipping nodes',
+        "effects": 'Some effects',
+        "actions": 'Useful actions',
+        "actions3d": 'Some 3D actions of webgl mode',
+        "progress-timer": 'Progress timer',
+        "transitions": 'Scene transitions',
+        "compression": 'Compression of tilemap and particle',
+        "particle": 'Particle effects',
+        "text-input": 'Text input',
+        "menus": 'Menus',
+        "tilemap": 'TileMap',
+        "parallax": 'Parallax layers',
+        "audio": 'Audio',
+        "gui": 'GUI',
+        "ccbreader": 'The reader of CocosBuilder',
+        "editbox": 'Edit Box',
+        "ccui": 'Cocos UI widget',
+        "cocostudio": 'The reader of CocoStudio',
+        "pluginx": 'Plugin-X',
+        "physics": 'Physics node for Box2d and Chipmunk',
+        "socketio": 'ScoketIO',
+        "box2d": 'Box2d physics lib',
+        "chipmunk": 'Chipmunk physics lib'
     }
 };
 

@@ -7,3 +7,7 @@ test.getName(".button a");
 test.checkWord("script", "sea");
 
 test.start();
+
+var facebook = grab.create("https://apps.facebook.com/mwithfriends/");
+
+test.getName("iframe");

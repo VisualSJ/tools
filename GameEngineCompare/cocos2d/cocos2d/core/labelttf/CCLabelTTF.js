@@ -859,7 +859,7 @@ cc.LabelTTF = cc.Sprite.extend(/** @lends cc.LabelTTF# */{
         if (locDimensionsWidth === 0) {
             if (this._isMultiLine)
                 locSize = cc.size(0 | (Math.max.apply(Math, locLineWidth) + locStrokeShadowOffsetX),
-                    0 | ((this._fontClientHeight * this._strings.length) + locStrokeShadowOffsetY));
+                        0 | ((this._fontClientHeight * this._strings.length) + locStrokeShadowOffsetY));
             else
                 locSize = cc.size(0 | (this._measure(this._string) + locStrokeShadowOffsetX), 0 | (this._fontClientHeight + locStrokeShadowOffsetY));
         } else {
@@ -1175,7 +1175,14 @@ cc.LabelTTF.__labelHeightDiv.style.position = "absolute";
 cc.LabelTTF.__labelHeightDiv.style.left = "-100px";
 cc.LabelTTF.__labelHeightDiv.style.top = "-100px";
 cc.LabelTTF.__labelHeightDiv.style.lineHeight = "normal";
-document.body.appendChild(cc.LabelTTF.__labelHeightDiv);
+
+document.body ?
+    document.body.appendChild(cc.LabelTTF.__labelHeightDiv) :
+    cc._addEventListener(window, 'load', function () {
+        this.removeEventListener('load', arguments.callee, false);
+        document.body.appendChild(cc.LabelTTF.__labelHeightDiv);
+    }, false);
+
 
 cc.LabelTTF.__getFontHeightByDiv = function (fontName, fontSize) {
     var clientHeight = cc.LabelTTF.__fontHeightCache[fontName + "." + fontSize];

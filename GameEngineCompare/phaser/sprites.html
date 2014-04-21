@@ -1,0 +1,36 @@
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>Phaser Examples</title>
+    <script src="build/phaser.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div id="phaser-example"></div>
+
+
+<script>
+    var game = new Phaser.Game(800, 500, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
+
+    function preload() {
+
+        //  You can fill the preloader with as many assets as your game requires
+
+        //  Here we are loading an image. The first parameter is the unique
+        //  string by which we'll identify the image later in our code.
+
+        //  The second parameter is the URL of the image (relative)
+        game.load.image('fish', '../resources/anim1.png');
+
+    }
+
+    function create() {
+
+        //  This creates a simple sprite that is using our loaded image and
+        //  displays it on-screen
+        game.add.sprite(0, 0, 'einstein');
+
+    }
+</script>
+</body>
+</html>

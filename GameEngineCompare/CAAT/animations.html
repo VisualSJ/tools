@@ -48,9 +48,6 @@
 
                     new CAAT.Module.Preloader.Preloader().
                             addElement("fish",  "../resources/anim1.png").
-                            addElement("fish2", "../resources/anim2.png").
-                            addElement("fish3", "../resources/anim3.png").
-                            addElement("fish4", "../resources/anim4.png").
                             load( function onAllAssetsLoaded(images) {
                                 sprites(images);
                             } );
@@ -73,28 +70,17 @@
         conpoundimagefish.push(
                 new CAAT.Foundation.SpriteImage().initialize(
                         director.getImage('fish'),  1, 3) );
-        conpoundimagefish.push(
-                new CAAT.Foundation.SpriteImage().initialize(
-                        director.getImage('fish2'), 1, 3) );
-        conpoundimagefish.push(
-                new CAAT.Foundation.SpriteImage().initialize(
-                        director.getImage('fish3'), 1, 3) );
-        conpoundimagefish.push(
-                new CAAT.Foundation.SpriteImage().initialize(
-                        director.getImage('fish4'), 1, 3) );
 
         function addFish(x,y) {
 
-            var scale= Math.random() + .5;
 
             var fish = new CAAT.Foundation.Actor().
                     setBackgroundImage(
-                    conpoundimagefish[(imageIndex++)%conpoundimagefish.length],
+                    conpoundimagefish[0],
                     true).
                     setLocation( x,y ).
-                    setScale( scale,scale ).
-                        setAnimationImageIndex( [0,1,2,1] ).
-                        setChangeFPS(300).
+                    setAnimationImageIndex( [0,1,2,1] ).
+                    setChangeFPS(300).
                     enableEvents(false);
 
             scene.addChild(fish);
@@ -102,7 +88,6 @@
 
         var gradient= director.ctx.createLinearGradient(0,0,director.width,director.height);
         gradient.addColorStop(0,'#000000');
-        gradient.addColorStop(1,'#00007f');
 
         var gr= new CAAT.Foundation.ActorContainer().
                 setBounds(0,0,director.width,director.height).
@@ -112,15 +97,10 @@
 
         scene.addChild(gr);
 
-        gr.enableEvents(true);
-        gr.mouseClick= function(ev) {
-            addFish(ev.point.x,ev.point.y);
-        };
-
 
         console.time("add 5000 Sprites");
         for(var i=0;i<5000;i++){
-            addFish(100,100);
+            addFish( (i*50)%800,(((i/16) | 0) * 26) % 494 );
         }
 
         console.timeEnd("add 5000 Sprites");

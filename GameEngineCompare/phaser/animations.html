@@ -26,7 +26,12 @@
         console.time("add 5000 sprites");
         for(var i=0;i<5000;i++){
 //            this.addFish(fish[(imgIndex++)%fish.length]);
-            game.add.sprite((i*50)%800, (((i/16) | 0) * 26) % 494, 'fish');
+            var _t = game.add.sprite((i*50)%800, (((i/16) | 0) * 26) % 494, 'fish');
+            var anim = _t.animations.add('walk');
+
+            anim.onLoop.add(animationLooped, this);
+
+            anim.play(2, true);
 
 
         }
@@ -38,6 +43,11 @@
     var timeout = 0;
     var fps = 0;
 
+    function animationLooped(sprite, animation) {
+
+
+
+    }
 
     function update(){
         if (game.time.time > timeout) {

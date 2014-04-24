@@ -2,6 +2,7 @@ var path = require("path");
 var fs = require("fs");
 var cp = require("child_process");
 
+var name = process.argv[2] || 'modules';
 
 var app = {
     _num: 0,
@@ -12,7 +13,7 @@ var app = {
         return JSON.parse(fs.readFileSync(file, 'utf-8'));
     },
     init: function () {
-        var _moduleFile = path.join(app._dir, '../moduleConfig.json');
+        var _moduleFile = path.join(app._dir, './moduleConfig.json');
         app._list = app._readJson(_moduleFile);
         app.sorting();
         app.createXml();
@@ -24,10 +25,10 @@ var app = {
         app._list = app._list.module;
 
         //分离CCDebugger
-        app._list['debugger'] = ['CCDebugger.js'];
-        app._list['core'] = app._list['core'].filter(function (_file) {
-            return _file != 'CCDebugger.js';
-        });
+//        app._list['debugger'] = ['CCDebugger.js'];
+//        app._list['core'] = app._list['core'].filter(function (_file) {
+//            return _file != 'CCDebugger.js';
+//        });
 
         //去除依赖关系
         for (var p in app._list) {
@@ -54,13 +55,23 @@ var app = {
         app._xml += '  <target name="module">\n';
         var _t = app._list;
         for (var p in _t) {
-            app._xml += '    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./modules/' + p + '.js">\n';
-            app._xml += '      <sources dir="/">\n';
+            //压缩版本
+            app._xml += '    <jscomp compilationLevel="simple" warning="quiet" debug="false" output="./' + name + '/dist/' + p + '.js">\n';
+            app._xml += '      <sources dir="e:\\">\n';
             _t[p].forEach(function (_file) {
-                app._xml += '        <file name="' + path.join(app._dir, '../', _file) + '" />\n';
+                app._xml += '        <file name="' + path.join(app._dir, '../', _file).replace(/(e|E):\\/, '') + '" />\n';
             });
             app._xml += '      </sources>\n';
             app._xml += '    </jscomp>\n';
+            //非压缩版本
+            app._xml += '    <jscomp compilationLevel="whitespace" warning="quiet" debug="true" output="./' + name + '/src/' + p + '.js">\n';
+            app._xml += '      <sources dir="e:\\">\n';
+            _t[p].forEach(function (_file) {
+                app._xml += '        <file name="' + path.join(app._dir, '../', _file).replace(/(e|E):\\/, '') + '" />\n';
+            });
+            app._xml += '      </sources>\n';
+            app._xml += '    </jscomp>\n';
+
         }
         app._xml += '  </target>\n';
         app._xml += '</project>';
@@ -87,7 +98,7 @@ var app = {
 
         //获取文件大小
         app._sort.forEach(function (_file) {
-            var _stat = fs.statSync('./modules/' + _file + '.js');
+            var _stat = fs.statSync('./' + name + '/dist/' + _file + '.js');
             _module.info.push({
                 name: _file,
                 size: ((_stat.size / 1000) | 0 ).toString() + 'KB',
@@ -96,7 +107,7 @@ var app = {
         });
 
         //提取依赖关系
-        var _moduleConfig = app._readJson(path.join(app._dir, '../moduleConfig.json')).module;
+        var _moduleConfig = app._readJson(path.join(app._dir, './moduleConfig.json')).module;
         _module.info.forEach(function (_info, i) {
             var _a = _moduleConfig[_info.name]
             if (_a) {
@@ -108,15 +119,21 @@ var app = {
                 _module.info[i].rule = [];
             }
             _module.info[i].info = app._info[_info.name] || 'Unknow';
+//            if(_info.name=='debugger') _module.info[i].rule.push('core')
         });
 
 
-        fs.writeFileSync('./module.js', "var module=" + JSON.stringify(_module));
+        fs.writeFileSync('./' + name + '/module.js', "var module=" + JSON.stringify(_module));
 
     },
     _sort: [
+        "core-webgl",
+        "core-extensions",
         "core",
         "debugger",
+        "actions",
+        "audio",
+        "menus",
         "kazmath",
         "shaders",
         "render-texture",
@@ -126,17 +143,14 @@ var app = {
         "shape-nodes",
         "clipping-nodes",
         "effects",
-        "actions",
         "actions3d",
         "progress-timer",
         "transitions",
         "compression",
         "particle",
         "text-input",
-        "menus",
         "tilemap",
         "parallax",
-        "audio",
         "gui",
         "ccbreader",
         "editbox",
@@ -149,6 +163,8 @@ var app = {
         "chipmunk"
     ],
     _info: {
+        "core-extensions": "Cocos2d Core extensions",
+        "core-webgl": "Cocos2d WebGL support",
         "core": 'Cocos2d engine core',
         "debugger": 'Debugging node',
         "kazmath": 'Math lib for webgl',

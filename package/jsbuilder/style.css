@@ -1,6 +1,9 @@
 .site{
     padding: 15px 0;
 }
+.content-body .title{
+    padding-bottom: 20px;
+}
 .content-body .site span{
     padding: 0 5px;
 }
@@ -33,6 +36,7 @@
     color: #0098d2;
 }
 .content-body .version .more{
+    display: none;
     width: 136px;
     height:32px;
     background: url("img/ChooseVersion.png") no-repeat;

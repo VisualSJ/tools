@@ -1,18 +1,6 @@
-
-var defaultVersion = 'V3.0-alpha2';
+var defaultVersion = 'v3.0-alpha2';
 
 var pageSet = {};
-
-var hiddenList = {
-    'core-webgl': [],
-    'core-extensions': [],
-    'kazmath': [],
-    'shaders': [],
-    'node-grid': [],
-    'compression': [],
-    'effects': [],
-    'physics': []
-};
 
 pageSet._tbody = document.getElementById("tbody");
 
@@ -31,13 +19,6 @@ pageSet.createHTML = function () {
         if (_result.name == "core"){
             pageSet.Html(_result);
         }
-    });
-    module.info.splice(0, 0, {
-        name: 'webgl',
-        size: 'Unknow',
-        rule: ['core', 'core-webgl', 'core-extensions', 'kazmath', 'shaders'],
-        info: 'Cocos2d WebGL renderers.',
-        checked: 0
     });
     module.info.forEach(function (_result) {
         if (_result.name != "core")

@@ -3,7 +3,7 @@ var module = {"info": [
     {"name": "core-extensions", "size": "56KB", "checked": 0, "rule": ["core"], "info": "Cocos2d Core extensions"},
     {"name": "core", "size": "226KB", "checked": 0, "rule": [], "info": "Cocos2d engine core"},
     {"name": 'webgl', "size": 'Unknow', "checked": 0, "rule": ['core', 'core-webgl', 'core-extensions', 'kazmath', 'shaders'], "info": 'Cocos2d WebGL renderers.'},
-    {"name": "debugger", "size": "16KB", "checked": 0, "rule": ["core"], "info": "Debugging node"},
+    {"name": "debugger", "size": "16KB", "checked": 0, "rule": ["core"], "info": "log info"},
     {"name": "actions", "size": "52KB", "checked": 0, "rule": ["core"], "info": "Actions for user "},
     {"name": "labels", "size": "19KB", "checked": 0, "rule": ["core"], "info": "Label nodes including LabelTTF, LabelBMFont, LabelAtlas."},
     {"name": "audio", "size": "13KB", "checked": 0, "rule": ["core"], "info": "Audio system."},

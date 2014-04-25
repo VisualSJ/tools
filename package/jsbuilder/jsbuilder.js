@@ -6,6 +6,8 @@ pageSet._tbody = document.getElementById("tbody");
 
 pageSet.init = function(){
     pageSet.setVersion();
+    pageSet.All();
+    pageSet.getImage();
 };
 
 pageSet.continue = function(){
@@ -238,6 +240,46 @@ pageSet.setVersion = function(){
     });
 };
 
+pageSet._All = false;
+pageSet.All = function(){
+    var _all = document.getElementById('All');
+    _all.parentNode.onclick = function(){
+        if(!pageSet._All){
+            _all.className += ' checked';
+            pageSet._All = true;
+            pageSet.checkedAll();
+        }else{
+            _all.className = _all.className.replace(' checked', '');
+            pageSet._All = false;
+            pageSet.UncheckedAll();
+        }
+    };
+};
+
+pageSet.checkedAll = function(){
+    module.info.forEach(function(_module){
+        _module.checked = 1;
+        var _t = document.getElementById(_module.name);
+        _t.className = _t.className.replace(' checked', '');
+        _t.className += ' checked';
+    });
+};
+
+pageSet.UncheckedAll = function(){
+    module.info.forEach(function(_module){
+        if(_module.name != 'core'){
+            _module.checked = 0;
+            var _t = document.getElementById(_module.name);
+            _t.className = _t.className.replace(' checked', '');
+        }
+    });
+};
+
+pageSet.getImage = function(){
+    var _img = document.createElement('img');
+    _img.src = "img/DownloadHover.png";
+};
+
 pageSet.init();
 
 var Load = function (_a) {
@@ -245,10 +287,11 @@ var Load = function (_a) {
 
     var _s = 'download_.js?ver=' + defaultVersion + '&com=' + _com + '&file=';
 
-
-    module.info.forEach(function (_module) {
-        if (_module.checked && _module.name != 'webgl') {
-            _s += _module.name + ',';
+    _sort.forEach(function(name){
+        for(var i=0;i<module.info.length;i++){
+            if(module.info[i].checked && module.info[i].name == name){
+                _s += module.info[i].name + ',';
+            }
         }
     });
 

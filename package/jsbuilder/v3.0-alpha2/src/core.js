@@ -6834,7 +6834,9 @@ if (cc._renderType === cc._RENDER_TYPE_CANVAS) {
         "load", function () {
             cc.Director._fpsImageLoaded = true
         });
-    if (cc._fpsImage)cc.Director._fpsImage.src = cc._fpsImage
+    if (cc._fpsImage)cc.Director._fpsImage.src = cc._fpsImage;
+    _tmp.DirectorWebGL && _tmp.DirectorWebGL();
+    delete _tmp.DirectorWebGL
 }
 ;
 cc.PRIORITY_NON_SYSTEM = cc.PRIORITY_SYSTEM + 1;

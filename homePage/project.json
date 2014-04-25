@@ -9,5 +9,6 @@
     "modules" : ["core", "actions", "text-input"],
 
     "jsList" : [
+        "public/js/scene.js"
     ]
 }

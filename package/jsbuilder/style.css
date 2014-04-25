@@ -3,6 +3,16 @@
 }
 .content-body .title{
     padding-bottom: 20px;
+    font-size: 14px;
+}
+.content-body .title a{
+    color:#349fd0;
+}
+.content-body .title b{
+    color:#444;
+}
+.content-body .title a:hover{
+    text-decoration: underline;
 }
 .content-body .site span{
     padding: 0 5px;
@@ -73,7 +83,7 @@
 .content-body .table{
     margin-top: 22px;
     border: 1px solid #eaeaea;
-    border-radius: 5px;;
+    border-radius: 5px;
 }
 .content-body .table table{
     color: #687084;
@@ -92,6 +102,7 @@
     border: none;
 }
 .content-body .table table td{
+    font-size: 14px;
     padding-left: 22px;
 }
 .content-body .table table .mark{
@@ -122,6 +133,23 @@
 }
 .content-body .button .download:hover{
     background: url("img/DownloadHover.png") no-repeat;
+}
+.content-body .link{
+    margin-top:25px;
+}
+.content-body .link a{
+    width: 24%;
+    display: block;
+    float: left;
+    border-right: 1px solid #CCC;
+    text-align: center;
+    color:#349fd0;
+}
+.content-body .link a:hover{
+    text-decoration: underline;
+}
+.content-body .link a:last-child{
+    border:none;
 }
 
 .file{width: 376px;}

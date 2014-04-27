@@ -18,7 +18,7 @@ var s_coco = [
     'coco1.png',
     'coco2.png'
 ];
-var goods = [
+var s_goods = [
     'goods1.png',
     'goods2.png',
     'goods3.png',
@@ -36,7 +36,7 @@ var g_resources = [
 g_resources = g_resources.concat(s_box);
 g_resources = g_resources.concat(s_mario);
 g_resources = g_resources.concat(s_coco);
-g_resources = g_resources.concat(goods);
+g_resources = g_resources.concat(s_goods);
 
 cc.game.onStart = function(){
     var designSize = cc.size(960, 540);

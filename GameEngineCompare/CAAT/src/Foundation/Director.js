@@ -516,6 +516,7 @@ CAAT.Module({
 
                 this.canvas.width = this.referenceWidth * factor;
                 this.canvas.height = this.referenceHeight * factor;
+                debugger;
                 this.ctx = this.canvas.getContext(this.glEnabled ? 'experimental-webgl' : '2d');
 
                 this.__setupRetina();
@@ -700,10 +701,20 @@ CAAT.Module({
              */
             initializeGL:function (width, height, canvas, proxy) {
 
+                if ( typeof canvas!=="undefined" ) {
+                    if ( isString(canvas) ) {
+                        canvas= document.getElementById(canvas);
+                    } else if ( !(canvas instanceof HTMLCanvasElement ) ) {
+                        console.log("Canvas is a: "+canvas+" ???");
+                    }
+                }
+
                 if (!canvas) {
                     canvas = document.createElement('canvas');
                     document.body.appendChild(canvas);
                 }
+
+                debugger;
 
                 canvas.width = width;
                 canvas.height = height;
@@ -983,6 +994,7 @@ CAAT.Module({
 
                 if (this.glEnabled) {
 
+                    debugger;
                     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
                     this.coordsIndex = 0;
                     this.uvIndex = 0;

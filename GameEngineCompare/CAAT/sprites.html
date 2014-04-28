@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <title></title>
 </head>
+<style>
+    canvas{
+        margin: 0 auto;
+    }
+    body{
+        text-align: center;
+    }
+</style>
 <body>
-
-<canvas id="experiment-canvas"></canvas>
+<canvas width="800" height="500" id="experiment-canvas"></canvas>
 
 </body>
 </html>
@@ -61,6 +68,7 @@
         CAAT.DEBUG= 1;
         var director= new CAAT.Foundation.Director().initialize( 800,500,'experiment-canvas' );
         director.setImagesCache(images);
+        director.renderMode = 0;
 
         var scene= director.createScene();
 

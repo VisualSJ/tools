@@ -1,7 +1,7 @@
 /****************************************************************************
- Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2008-2010 Ricardo Quesada
- Copyright (c) 2011      Zynga Inc.
+ Copyright (c) 2011-2012 cocos2d-x.org
+ Copyright (c) 2013-2014 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -515,4 +515,9 @@ cc.IMEDispatcher.Impl = cc.Class.extend(/** @lends cc.IMEDispatcher.Impl# */{
 
 // Initialize imeDispatcher singleton
 cc.imeDispatcher = new cc.IMEDispatcher();
-cc.imeDispatcher.init();
+
+document.body ?
+    cc.imeDispatcher.init() :
+    cc._addEventListener(window, 'load', function () {
+        cc.imeDispatcher.init();
+    }, false);

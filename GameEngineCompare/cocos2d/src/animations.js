@@ -1,19 +1,23 @@
 var animationsScene = cc.Scene.extend({
 
 
-    onEnter: function(){
+    ctor: function(){
         this._super();
+
+        var _t =  cc.SpriteBatchNode.create("../../../resources/anim1.png");
+
+        this.addChild(_t);
 
         console.time("add 5000 sprites");
         for(var i=0;i<5000;i++){
-            this.addFish( (i*50)%800, (((i/16) | 0) * 26) % 494 )
+            this.addFish(_t, (i*50)%800, (((i/16) | 0) * 26) % 494 )
         }
         console.timeEnd("add 5000 sprites");
 
     },
-    addFish: function(x, y){
+    addFish: function(batchNode, x, y){
 
-        var texture = cc.textureCache.addImage("../../resources/anim1.png");
+        var texture = cc.textureCache.addImage("../../../resources/anim1.png");
 
         var frame0 = cc.SpriteFrame.create(texture, cc.rect(0, 0, 50, 26));
         var frame1 = cc.SpriteFrame.create(texture, cc.rect(50, 0, 50, 26));
@@ -24,7 +28,7 @@ var animationsScene = cc.Scene.extend({
 
         sprite.setPosition(cc.p(x+25, y+13));
 
-        this.addChild(sprite);
+        batchNode.addChild(sprite);
 
 
         var animFrames = [];

@@ -1,7 +1,7 @@
 /****************************************************************************
- Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2008-2010 Ricardo Quesada
- Copyright (c) 2011      Zynga Inc.
+ Copyright (c) 2011-2012 cocos2d-x.org
+ Copyright (c) 2013-2014 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -40,8 +40,17 @@ cc.AnimationFrame = cc.Class.extend(/** @lends cc.AnimationFrame# */{
     _delayPerUnit:0,
     _userInfo:null,
 
-    ctor:function () {
-        this._delayPerUnit = 0;
+    /**
+     * @constructor
+     * @param spriteFrame
+     * @param delayUnits
+     * @param userInfo
+     * @returns {AnimationFrame}
+     */
+    ctor:function (spriteFrame, delayUnits, userInfo) {
+        this._spriteFrame = spriteFrame || null;
+        this._delayPerUnit = delayUnits || 0;
+        this._userInfo = userInfo || null;
     },
 
     clone: function(){
@@ -122,6 +131,18 @@ cc.AnimationFrame = cc.Class.extend(/** @lends cc.AnimationFrame# */{
         this._userInfo = userInfo;
     }
 });
+
+/**
+ * Creates an animation frame.
+ * @param {cc.SpriteFrame} spriteFrame
+ * @param {Number} delayUnits
+ * @param {object} userInfo
+ * @example
+ *
+ */
+cc.AnimationFrame.create = function(spriteFrame,delayUnits,userInfo){
+    return new cc.AnimationFrame(spriteFrame,delayUnits,userInfo);
+};
 
 /**
  * <p>

@@ -1,5 +1,38 @@
 var module = {};
 
+var s_pic = {
+    mario: [
+        cc.rect(0, 0, 108, 163),
+        cc.rect(108, 0, 108, 163),
+        cc.rect(216, 0, 108, 163),
+        cc.rect(324, 0, 108, 163),
+        cc.rect(432, 0, 108, 163),
+        cc.rect(540, 0, 102, 163),
+        cc.rect(642, 0, 114, 163)
+    ],
+    goods: [
+        cc.rect(0, 0, 182, 110),
+        cc.rect(184, 0, 76, 76),
+        cc.rect(260, 0, 76, 76),
+        cc.rect(336, 0, 76, 76),
+
+        cc.rect(0, 111, 133, 127),
+        cc.rect(140, 112, 92, 91),
+        cc.rect(245, 78, 185, 152),
+        cc.rect(413, 0, 57, 34),
+        cc.rect(414, 37, 90, 42),
+        cc.rect(0, 242, 508, 74)
+
+    ],
+    white: [
+        cc.rect(0, 0, 84, 107),
+        cc.rect(85, 0, 84, 107),
+        cc.rect(0, 157, 657, 221),
+        cc.rect(179, 0, 307, 162)
+    ]
+
+};
+
 var scene = cc.Scene.extend({
     onEnter: function(){
         var self = this;
@@ -36,17 +69,17 @@ var scene = cc.Scene.extend({
 
         //前景队列
         this.ProspectList = [];
-        module.for(this._blockNum, function(i){
+        module.forEach(this._blockNum, function(i){
             self.ProspectList.push(new module.Prospect(self.Prospect, self.ProspectList.length));
         });
         //背景队列
         this.BackgroundList = [];
-        module.for(this._blockNum, function(i){
+        module.forEach(this._blockNum, function(i){
             self.BackgroundList.push(new module.Background(self.Background, self.BackgroundList.length));
         });
         //云和山队列
         this.SlowList = [];
-        module.for(this._blockNum, function(i){
+        module.forEach(this._blockNum, function(i){
             self.SlowList.push(new module.slowMove(self.slowMove, self.SlowList.length));
         });
 
@@ -160,7 +193,7 @@ var scene = cc.Scene.extend({
 });
 
 //循环
-module.for = function(num, handle){
+module.forEach = function(num, handle){
     for(var i=0;i<num;i++){
         typeof handle === 'function' && handle(i);
     }
@@ -177,8 +210,8 @@ module.Prospect = function(layer, i){
 
     //插入底层草地
     this.Grassland = [];
-    module.for(5, function(j){
-        var _Sprite = cc.Sprite.create(s_ground);
+    module.forEach(5, function(j){
+        var _Sprite = cc.Sprite.create(s_goods, s_pic.goods[0]);
         _Sprite.setPosition(cc.p( 90 + j * 160 + _x, 55));
         self.Grassland.push(_Sprite);
         self.Layer.addChild(_Sprite);
@@ -195,8 +228,8 @@ module.Prospect = function(layer, i){
         {w: 657, h: 221},
         {w: 307, h: 162}
     ];
-    module.for(5, function(j){
-        var _Sprite = cc.Sprite.create(s_goods[j]);
+    module.forEach(5, function(j){
+        var _Sprite = cc.Sprite.create(s_goods, s_pic.goods[j+4]);
         var _t = 0 | Math.random() * 720 + 40;
         _Sprite.setPosition(cc.p(_t + _x, 100 + size[j].h/2));
         self.Goods.push({
@@ -210,8 +243,8 @@ module.Prospect = function(layer, i){
     //插入顶部砖块
     this.Brick = [];
     this.BrickNum = Math.round(Math.random() * 4);
-    module.for(5, function(j){
-        var _Sprite = cc.Sprite.create( j == self.BrickNum ? s_box[2] : s_box[0]);
+    module.forEach(5, function(j){
+        var _Sprite = cc.Sprite.create(s_goods, j == self.BrickNum ? s_pic.goods[3] : s_pic.goods[1]);
         _Sprite.setPosition(cc.p( 260 + j*76 + _x, 360));
         self.Brick.push(_Sprite);
         self.Layer.addChild(_Sprite);
@@ -249,8 +282,8 @@ module.Prospect = function(layer, i){
         //重置顶部砖块
         var self = this;
         this.BrickNum = Math.round(Math.random() * 4);
-        module.for(this.Brick.length, function(j){
-            self.Brick[j].initWithFile( j == self.BrickNum ? s_box[2] : s_box[0]);
+        module.forEach(this.Brick.length, function(j){
+            self.Brick[j].initWithFile(s_goods, j == self.BrickNum ? s_pic.goods[3] : s_pic.goods[1]);
         });
     };
 };
@@ -283,7 +316,7 @@ module.slowMove = function(layer, i){
     var _x = i * 960;
 
     this.Mountain = {
-        sprite: cc.Sprite.create(s_goods[7]),
+        sprite: cc.Sprite.create(s_goods, s_pic.goods[9]),
         x: Math.random()*300 | 0
     };
     this.Mountain.sprite.setPosition(cc.p(this.Mountain.x + _x, 90));
@@ -291,8 +324,8 @@ module.slowMove = function(layer, i){
     this.Layer.addChild(this.Mountain.sprite);
 
     this.Cloud = [];
-    module.for(2, function(j){
-        var _sprite = cc.Sprite.create(s_goods[j+5]);
+    module.forEach(2, function(j){
+        var _sprite = cc.Sprite.create(s_white, s_pic.white[j+2]);
         var _tx = Math.random()*960 |0;
         var _ty = (Math.random()*300 + 200) | 0;
         _sprite.setPosition( _tx + _x, _ty);
@@ -327,7 +360,7 @@ module.Mario = function(obj, layer){
     this.scene = obj;
     var self = this;
 
-    this.Sprite = cc.Sprite.create(s_mario[0]);
+    this.Sprite = cc.Sprite.create(s_mario, s_pic.mario[0]);
     this.Sprite.setPosition(cc.p(1160, 180));
     this.Layer.addChild(this.Sprite);
 
@@ -336,18 +369,18 @@ module.Mario = function(obj, layer){
 
     this.__run = function(){
 
-        self.Sprite.initWithFile(s_mario[self._run++]);
+        self.Sprite.initWithFile(s_mario, s_pic.mario[self._run++]);
         if(self._run > 5) self._run = 0;
     };
 
     this.jump = function(){
         this.unschedule(self.__run);
-        self.Sprite.initWithFile(s_mario[6]);
+        self.Sprite.initWithFile(s_mario, s_pic.mario[6]);
         this.schedule(self.__jump, 0.01);
     };
     this._jumpNum = [];
 
-    module.for(41, function(i){
+    module.forEach(41, function(i){
         self._jumpNum.push(180 + ((-Math.pow(i/2 - 10, 2) + 100) * 0.8) | 0);
     });
 
@@ -362,7 +395,7 @@ module.Mario = function(obj, layer){
                 if(_x < -30 - _t && _x > -134 - _t){
                     this.Cocos.jump();
                     var _t = this.ProspectList[1];
-                    _t.Brick[_t.BrickNum].initWithFile(s_box[1]);
+                    _t.Brick[_t.BrickNum].initWithFile(s_goods, s_pic.goods[2]);
 
                 }
             }
@@ -381,14 +414,14 @@ module.Cocos = function(obj, layer){
     this.Layer = layer;
     var self = this;
 
-    this.Sprite = cc.Sprite.create(s_coco[1]);
+    this.Sprite = cc.Sprite.create(s_white, s_pic.white[1]);
     this.Sprite.setPosition(cc.p(1130, 360));
     this.Sprite.setVisible(false);
     layer.addChild(this.Sprite);
     this._jumpNum = [];
     this._jump = 0;
 
-    module.for(51, function(i){
+    module.forEach(51, function(i){
         self._jumpNum.push(375 + ((-Math.pow(i/2 - 10, 2) + 100)*1.5) | 0);
     });
 
@@ -426,7 +459,7 @@ module.Cocos = function(obj, layer){
     var _tt = 0;
     this.__down = function(){
         if(this.Prospect.x <= -480){
-            self.Sprite.initWithFile(s_coco[1]);
+            self.Sprite.initWithFile(s_white, s_pic.white[1]);
 
             var _y =  self.Sprite.y;
             if(_y > 300){
@@ -441,7 +474,7 @@ module.Cocos = function(obj, layer){
             }
 
         }else{
-            self.Sprite.initWithFile(s_coco[0]);
+            self.Sprite.initWithFile(s_white, s_pic.white[0]);
             _tt = -75;
             self._jump = 20;
         }

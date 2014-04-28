@@ -90,6 +90,7 @@ var scene = cc.Scene.extend({
 
             if(this.ProspectList.length <= this._blockNum){
                 this.ProspectList.push(_remove);
+                _remove.rest();
             }else{
                 _remove.remove();
             }
@@ -243,6 +244,15 @@ module.Prospect = function(layer, i){
             self.Layer.removeChild(_goods.sprite);
         });
     };
+
+    this.rest = function(){
+        //重置顶部砖块
+        var self = this;
+        this.BrickNum = Math.round(Math.random() * 4);
+        module.for(this.Brick.length, function(j){
+            self.Brick[j].initWithFile( j == self.BrickNum ? s_box[2] : s_box[0]);
+        });
+    };
 };
 
 
@@ -256,7 +266,7 @@ module.Background = function(layer, i){
     this.Sprite = cc.Sprite.create(s_sky);
     this.Sprite.setPosition(cc.p(_x + 480, 270));
     this.Sprite.setFlippedX(i%2);
-    this.Sprite.setScale(1.05);
+//    this.Sprite.setScale(1.05);
     layer.addChild(this.Sprite);
 
     this.remove = function(){
@@ -351,6 +361,9 @@ module.Mario = function(obj, layer){
                 var _t = this.BrickNum * 76;
                 if(_x < -30 - _t && _x > -134 - _t){
                     this.Cocos.jump();
+                    var _t = this.ProspectList[1];
+                    _t.Brick[_t.BrickNum].initWithFile(s_box[1]);
+
                 }
             }
         }else{
@@ -368,7 +381,7 @@ module.Cocos = function(obj, layer){
     this.Layer = layer;
     var self = this;
 
-    this.Sprite = cc.Sprite.create(s_coco[0]);
+    this.Sprite = cc.Sprite.create(s_coco[1]);
     this.Sprite.setPosition(cc.p(1130, 360));
     this.Sprite.setVisible(false);
     layer.addChild(this.Sprite);
@@ -413,6 +426,7 @@ module.Cocos = function(obj, layer){
     var _tt = 0;
     this.__down = function(){
         if(this.Prospect.x <= -480){
+            self.Sprite.initWithFile(s_coco[1]);
 
             var _y =  self.Sprite.y;
             if(_y > 300){
@@ -427,6 +441,7 @@ module.Cocos = function(obj, layer){
             }
 
         }else{
+            self.Sprite.initWithFile(s_coco[0]);
             _tt = -75;
             self._jump = 20;
         }

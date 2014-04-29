@@ -714,8 +714,6 @@ CAAT.Module({
                     document.body.appendChild(canvas);
                 }
 
-                debugger;
-
                 canvas.width = width;
                 canvas.height = height;
 
@@ -994,7 +992,6 @@ CAAT.Module({
 
                 if (this.glEnabled) {
 
-                    debugger;
                     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
                     this.coordsIndex = 0;
                     this.uvIndex = 0;

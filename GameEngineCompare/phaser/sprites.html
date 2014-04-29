@@ -10,7 +10,10 @@
 <div id="fps"></div>
 
 <script>
-    var game = new Phaser.Game(800, 500, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
+    var renderMode = (location.search && location.search.toLowerCase().indexOf("webgl") > -1)?Phaser.WEBGL:Phaser.CANVAS;
+    var game = new Phaser.Game(800, 500, renderMode, 'phaser-example', { preload: preload, create: create, update: update });
+
+//    var game = new Phaser.Game(800, 500, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
 
     function preload() {
 

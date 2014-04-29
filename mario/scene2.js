@@ -18,7 +18,7 @@ var s_pic = {
 
         cc.rect(0, 111, 133, 127),
         cc.rect(140, 112, 92, 91),
-        cc.rect(245, 78, 185, 142),
+        cc.rect(245, 78, 185, 152),
         cc.rect(413, 0, 57, 34),
         cc.rect(414, 37, 90, 42),
         cc.rect(0, 242, 508, 74)
@@ -92,7 +92,7 @@ var scene = cc.Scene.extend({
 
         setTimeout(function(){
             self.schedule(self.Mario.__run, 0.1);
-            self.schedule(self.datetime, 0.01);
+            self.schedule(self.update, 0.01);
         },1000);
 
         //点击事件
@@ -107,13 +107,6 @@ var scene = cc.Scene.extend({
                 self.Mario.jump.call(self);
             }
         }, this);
-    },
-
-    datetime: function(datetime){
-        var _t = datetime/0.014 | 0;
-        for(var i = 0;i<_t;i++){
-            this.update(_t);
-        }
     },
 
     update: function(){
@@ -253,7 +246,7 @@ module.Prospect = function(layer, i){
     this.Grassland = [];
     module.forEach(5, function(j){
         var _Sprite = cc.Sprite.create(s_goods, s_pic.goods[0]);
-        _Sprite.setPosition(cc.p( 90 + j * 160 + _x, 50));
+        _Sprite.setPosition(cc.p( 90 + j * 160 + _x, 55));
         self.Grassland.push(_Sprite);
         self.Layer.addChild(_Sprite);
     });
@@ -327,7 +320,7 @@ module.slowMove = function(layer, i){
         sprite: cc.Sprite.create(s_goods, s_pic.goods[9]),
         x: Math.random()*300 | 0
     };
-    this.Mountain.sprite.setPosition(cc.p(this.Mountain.x + _x, 80));
+    this.Mountain.sprite.setPosition(cc.p(this.Mountain.x + _x, 100));
     this.Mountain.sprite.setScale(2.5);
     this.Layer.addChild(this.Mountain.sprite);
 
@@ -392,16 +385,7 @@ module.Mario = function(obj, layer){
         self._jumpNum.push(180 + ((-Math.pow(i/2 - 10, 2) + 100) * 0.8) | 0);
     });
 
-    this.__jump = function(datetime){
-        var _t = datetime/0.014 | 0;
-        for(var i=0;i<_t;i++){
-            if(this.Mario.__jumpAction.call(this, _t)){
-                break;
-            }
-        }
-    };
-
-    this.__jumpAction = function(ms){
+    this.__jump = function(){
         if(self._jump <= 40){
             self.Sprite.y = self._jumpNum[self._jump++];
 
@@ -409,7 +393,7 @@ module.Mario = function(obj, layer){
                 var _x = this.Prospect.x;
 
                 var _t = this.BrickNum * 76;
-                if(_x < -30 - _t + 4*ms && _x > -134 - _t - 4*ms){
+                if(_x < -30 - _t && _x > -134 - _t){
                     this.Cocos.jump();
                     var _t = this.ProspectList[1];
                     _t.Brick[_t.BrickNum].initWithFile(s_goods, s_pic.goods[2]);
@@ -420,7 +404,6 @@ module.Mario = function(obj, layer){
             this.schedule(self.__run, 0.1);
             this.unschedule(self.__jump);
             self._jump = 0;
-            return true;
         }
     };
 };
@@ -461,17 +444,7 @@ module.Cocos = function(obj, layer){
         }
     };
 
-    this.__jump = function(datetime){
-        var _t = datetime/0.014 | 0;
-        for(var i=0;i<_t;i++){
-            if(this.Cocos.__jumpAction.call(this)){
-                break;
-            }
-        }
-
-    };
-
-    this.__jumpAction = function(){
+    this.__jump = function(){
         if(self._jump <= 34){
             if(self._jump <= 8){
                 self.Sprite.x = self.Sprite.x - 2;
@@ -481,21 +454,11 @@ module.Cocos = function(obj, layer){
         }else{
             self.Sence.unschedule(self.__jump);
             self.Sence.schedule(self.__down, 0.01);
-            return true;
         }
     };
 
     var _tt = 0;
-    this.__down = function(datetime){
-        var _t = datetime/0.014 | 0;
-        for(var i=0;i<_t;i++){
-            if(this.Cocos.__downAction.call(this)){
-                break;
-            }
-        }
-    };
-
-    this.__downAction = function(){
+    this.__down = function(){
         if(this.Prospect.x <= -480){
             self.Sprite.initWithFile(s_white, s_pic.white[1]);
 
@@ -515,7 +478,6 @@ module.Cocos = function(obj, layer){
             self.Sprite.initWithFile(s_white, s_pic.white[0]);
             _tt = -75;
             self._jump = 20;
-            return true;
         }
-    }
+    };
 };

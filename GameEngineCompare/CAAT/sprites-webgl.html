@@ -65,13 +65,10 @@
     }
 
     function sprites(images){
-        CAAT.GLRENDER = true;
         CAAT.DEBUG= 1;
-        var director= new CAAT.Foundation.Director();//.initialize( 800,500,'experiment-canvas' );
-        director.initializeGL( 800,500,'experiment-canvas').setClear(!1);
+        var director = new CAAT.Foundation.Director().initializeGL( 800,500,'experiment-canvas' );
+        director.glEnabled = true;
         director.setImagesCache(images);
-
-//        director.renderMode = 1;
 
         var scene= director.createScene();
 
@@ -99,8 +96,8 @@
         }
 
 
-        var gradient= director.getImage("mode-text").createLinearGradient(0,0,director.width,director.height);
-        gradient.addColorStop(0,'#000000');
+//        var gradient= director.ctx.createLinearGradient(0,0,director.width,director.height);
+//        gradient.addColorStop(0,'#000000');
 
         var gr= new CAAT.Foundation.ActorContainer().
                 setBounds(0,0,director.width,director.height).

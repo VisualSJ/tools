@@ -1287,6 +1287,10 @@ if (cc._renderType === cc._RENDER_TYPE_CANVAS) {
         if (!rect) {
             rect = cc.rect(0, 0, texture.width, texture.height);
         }
+
+        cc.assert(rect.x + rect.width <= texture.width, 'Rect width exceeds maximum margin: %s', texture.url);
+        cc.assert(rect.y + rect.height <= texture.height, 'Rect height exceeds the maximum margin: %s', texture.url);
+
         _t._originalTexture = texture;
 
         _t.texture = texture;
@@ -1555,6 +1559,14 @@ if (cc._renderType === cc._RENDER_TYPE_CANVAS) {
                     0, 0, locTextureCoord.width, locTextureCoord.height,
                     flipXOffset, flipYOffset, locDrawSizeCanvas.width, locDrawSizeCanvas.height);
             } else {
+//                console.log(
+//                    locTextureCoord.x,
+//                    locTextureCoord.y,
+//                    locTextureCoord.width,
+//                    locTextureCoord.height,
+//                    locDrawSizeCanvas.width,
+//                    locDrawSizeCanvas.height
+//                );
                 context.drawImage(image,
                     locTextureCoord.x, locTextureCoord.y, locTextureCoord.width,  locTextureCoord.height,
                     flipXOffset, flipYOffset, locDrawSizeCanvas.width , locDrawSizeCanvas.height);

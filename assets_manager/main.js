@@ -30,6 +30,8 @@
 cc.game.onStart = function(){
     cc.LoaderScene.preload(g_resources, function () {
 
+    	cc.log("TEST ASSETSMANAGER .....");
+
         if(window.sidebar){
             sidebar.defaultScene();
         }else{

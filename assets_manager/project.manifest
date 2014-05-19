@@ -22,20 +22,26 @@
 			"group" : "2"
 		},
 
+		"close_png2" : {
+			"path" : "res/Images/close.png",
+			"md5" : "....",
+			"group" : "2"
+		},
+
 		"grossini_11" : {
-			"path" : "res/images/grossini_dance_11.png",
+			"path" : "res/Images/grossini_dance_11.png",
 			"md5" : "...",
 			"group" : "2"
 		},
 
 		"grossini_12" : {
-			"path" : "res/images/grossini_dance_12.png",
+			"path" : "res/Images/grossini_dance_12.png",
 			"md5" : "...",
 			"group" : "2"
 		},
 
 		"grossini_13" : {
-			"path" : "res/images/grossini_dance_13.png",
+			"path" : "res/Images/grossini_dance_13.png",
 			"md5" : "...",
 			"group" : "2"
 		},
@@ -66,6 +72,6 @@
     
     "searchPaths" : [
         "res/",
-        "res/images"
+        "res/Images"
     ]
 }

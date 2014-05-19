@@ -62,5 +62,10 @@
 			"compression" : "zip",
 			"path" : "src/jsfiles.zip"
 		}
-	}
+	},
+    
+    "searchPaths" : [
+        "res/",
+        "res/images"
+    ]
 }

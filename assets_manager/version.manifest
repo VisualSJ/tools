@@ -1,4 +1,5 @@
 {
+	"packageUrl" : "http://tools.itharbors.com/assets_manager/",
 	"remoteManifestUrl" : "http://tools.itharbors.com/assets_manager/project.manifest",
 	"remoteVersionUrl" : "http://tools.itharbors.com/assets_manager/version.manifest",
 	"version" : "1.2.0",

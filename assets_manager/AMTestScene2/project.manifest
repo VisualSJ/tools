@@ -7,6 +7,21 @@
 	"assets" : {
 		"Images/background2.jpg" : {
 			"md5" : "...."
+		},
+		"ball.png" : {
+			"md5" : "...."
+		},
+		"blocks.png" : {
+			"md5" : "...."
+		},
+		"blocks9ss.png" : {
+			"md5" : "...."
+		},
+		"close.png" : {
+			"md5" : "...."
+		},
+		"cocos2dbanner.png" : {
+			"md5" : "...."
 		}
 	},
     

@@ -3,72 +3,38 @@
 	"remoteManifestUrl" : "http://tools.itharbors.com/assets_manager/project.manifest",
 	"remoteVersionUrl" : "http://tools.itharbors.com/assets_manager/version.manifest",
 	"version" : "1.2.0",
-	"groupVersions" : {
-		"1" : "1.2.1",
-		"2" : "1.1.0"
-	},
 	"engineVersion" : "3.0",
 
 	"assets" : {
-		"main_js" : {
-			"path" : "main.js",
-			"md5" : ".....",
-			"group" : "1"
+		"main.js" : {
+			"md5" : "....."
 		},
 
-		"close_png" : {
-			"path" : "res/CloseNormal.png",
-			"md5" : "....",
-			"group" : "2"
+		"res/CloseNormal.png" : {
+			"md5" : "...."
 		},
 
-		"close_png2" : {
-			"path" : "res/Images/close.png",
-			"md5" : "....",
-			"group" : "2"
+		"res/Images/close.png" : {
+			"md5" : "...."
 		},
 
-		"grossini_11" : {
-			"path" : "res/Images/grossini_dance_11.png",
-			"md5" : "...",
-			"group" : "2"
+		"res/Images/grossini_dance_11.png" : {
+			"md5" : "..."
 		},
 
-		"grossini_12" : {
-			"path" : "res/Images/grossini_dance_12.png",
-			"md5" : "...",
-			"group" : "2"
+		"res/Images/grossini_dance_12.png" : {
+			"md5" : "..."
 		},
 
-		"grossini_13" : {
-			"path" : "res/Images/grossini_dance_13.png",
-			"md5" : "...",
-			"group" : "2"
+		"res/Images/grossini_dance_13.png" : {
+			"md5" : "..."
 		},
 
-		"app_js" : {
-			"compressed" : true,
-			"compressedFile" : "jsfiles",
-			"path" : "src/test-main.js",
-			"md5" : "...",
-			"group" : "1"
-		},
-
-		"enemy_js" : {
-			"compressed" : true,
-			"compressedFile" : "jsfiles",
-			"path" : "src/tests_resources.js",
-			"md5" : "....",
-			"group" : "1"
+		"src/test.zip" : {
+			"compressed" : "true",
+			"md5" : "..."
 		}
-	},
-
-	"compressedFiles" : {
-		"jsfiles" : {
-			"compression" : "zip",
-			"path" : "src/jsfiles.zip"
-		}
-	},
+	],
     
     "searchPaths" : [
         "res/",

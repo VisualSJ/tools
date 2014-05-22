@@ -8,19 +8,19 @@
 		"Images/background2.jpg" : {
 			"md5" : "...."
 		},
-		"ball.png" : {
+		"Images/ball.png" : {
 			"md5" : "...."
 		},
-		"blocks.png" : {
+		"Images/blocks.png" : {
 			"md5" : "...."
 		},
-		"blocks9ss.png" : {
+		"Images/blocks9ss.png" : {
 			"md5" : "...."
 		},
-		"close.png" : {
+		"Images/close.png" : {
 			"md5" : "...."
 		},
-		"cocos2dbanner.png" : {
+		"Images/cocos2dbanner.png" : {
 			"md5" : "...."
 		}
 	},

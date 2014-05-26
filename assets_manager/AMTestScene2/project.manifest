@@ -1,5 +1,5 @@
 {
-	"packageUrl" : "http://example.com/assets_manager/TestScene/",
+	"packageUrl" : "http://example.com/assets_manager/AMTestScene2/",
 	"remoteManifestUrl" : "http://example.com/assets_manager/AMTestScene2/version.manifest",
 	"remoteManifestUrl" : "http://example.com/assets_manager/AMTestScene2/project.manifest",
 	"version" : "1.1.0",

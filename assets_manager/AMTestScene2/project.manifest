@@ -9,21 +9,14 @@
 		"Images/background2.jpg" : {
 			"md5" : "..."
 		},
-		"Images/icon.png" : {
+		"Images/ball.png" : {
 			"md5" : "..."
 		},
-		"Images/button.png" : {
-			"md5" : "..."
-		},
-		"src/game.js" : {
-			"md5" : "..."
-		},
-		"src/layer.js" : {
+		"Images/blocks.png" : {
 			"md5" : "..."
 		}
 	},
     
     "searchPaths" : [
-        "res/"
     ]
 }

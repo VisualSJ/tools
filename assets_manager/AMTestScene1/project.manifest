@@ -15,6 +15,10 @@
 		"Images/blocks.png" : {
 			"md5" : "..."
 		},
+		"compressed.zip" : {
+			"md5" : "...",
+			"compressed" : true
+		},
 		"Images/Bird.jpg" : {
 			"md5" : "..."
 		},

@@ -55,11 +55,8 @@
             var self = this;
             FB.login(function(response) {
                 if (response.authResponse) {
+                    self._isLogined = true;
                     console.log('Welcome!  Fetching your information.... ');
-                    FB.api('/me', function(response) {
-                        self._isLogined = true;
-                        console.log('Good to see you, ' + response.name + '.');
-                    });
                 } else {
                     self._isLogined = false;
                     console.log('User cancelled login or did not fully authorize.');
@@ -84,13 +81,22 @@
             FB.getLoginStatus(function(response) {
                 if (response && response.status === 'connected') {
                     //login
+                    console.log("isLogined - true");
                     callback(true);
                 }else{
+                    console.log("isLogined - false");
                     callback(false);
                 }
             });
             return this._isLogined;
         }
+
+        /**
+         *                     FB.api('/me', function(response) {
+                        console.log('Good to see you, ' + response.name + '.');
+                    });
+         */
+
 
     });
 

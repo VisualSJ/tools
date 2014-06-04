@@ -6,81 +6,79 @@
 </head>
 <body>	 
     <canvas id="gameCanvas" width="800" height="450"></canvas>
+    <script src="./plugin/Plugin.js"></script>
+    <script src="./plugin/platform/facebook.js"></script>
+    <script src="./plugin/platform/facebook_sdk.js"></script>
     <script type="text/javascript">
-          window.onload = function(){
-              cc.game.onStart = function(){
-                  //load resources
-                  cc.LoaderScene.preload(["HelloWorld.png"], function () {
-                      var MyScene = cc.Scene.extend({
-                          onEnter:function () {
-                              this._super();
-                              var size = cc.director.getWinSize();
-                              var sprite = cc.Sprite.create("HelloWorld.png");
-                              sprite.setPosition(size.width / 2, size.height / 2);
-                              sprite.setScale(0.8);
-                              this.addChild(sprite, 0);
+        var ITEM_TAG_BASIC = 1000;
+        window.onload = function(){
+            cc.game.onStart = function(){
 
-                              var label = cc.LabelTTF.create("Hello World", "Arial", 40);
-                              label.setPosition(size.width / 2, size.height / 2);
-                              this.addChild(label, 1);
+                Plugin.init({
+                    facebook: {
+                        appId : '472437549567003',
+                        xfbml : true,
+                        version : 'v2.0'
+                    }
+                });
+
+                var s_EventMenuItem = [
+                    {
+                        itemTitle: "login",
+                        test: function(){
+                            var ufb = Plugin.loadPlugin("UserFacebook");
+                            ufb.login();
+                        }
+                    },
+                    {
+                        itemTitle: "logout",
+                        test: function(){
+                            var ufb = Plugin.loadPlugin("UserFacebook");
+                            ufb.logout();
+                        }
+                    }
+                ];
 
 
-                              var menu = cc.Menu.create();//pmenu is just a holder for the close button
-                              menu.x = 0;
-                              menu.y = 0;
+                //load resources
+                cc.LoaderScene.preload(["HelloWorld.png"], function () {
+                    var MyScene = cc.Scene.extend({
+                        onEnter:function () {
+                            this._super();
+                            var size = cc.director.getWinSize();
+                            var sprite = cc.Sprite.create("HelloWorld.png");
+                            sprite.setPosition(size.width / 2, size.height / 2);
+                            sprite.setScale(0.8);
+                            this.addChild(sprite, 0);
 
-                              this._itemMenu = cc.Menu.create();//item menu is where all the label goes, and the one gets scrolled
+                            var winSize = cc.director.getWinSize();
 
-                              var testNames = [
-                                  {
-                                      title:"ActionManager Test",
-                                      platforms: 1,
-                                      testScene:function () {
-                                          return new ActionManagerTestScene();
-                                      }
-                                  },
-                                  {
-                                      title:"Actions Test",
-                                      platforms: 1,
-                                      testScene:function () {
-                                          return new ActionsTestScene();
-                                      }
-                                  }
-                              ];
+                            var pMenu = cc.Menu.create();
+                            pMenu.x = 0;
+                            pMenu.y = 0;
+                            cc.MenuItemFont.setFontName("Arial");
+                            cc.MenuItemFont.setFontSize(24);
+                            for (var i = 0; i < s_EventMenuItem.length; ++i) {
+                                var selItem = s_EventMenuItem[i];
+                                var pItem = cc.MenuItemFont.create(selItem.itemTitle, this.menuCallback, this);
+                                pItem.x = winSize.width / 2;
+                                pItem.y = winSize.height - (i + 1) * 40;
+                                pMenu.addChild(pItem, ITEM_TAG_BASIC + i);
+                            }
+                            this.addChild(pMenu);
 
-                              for (var i = 0, len = testNames.length; i < len; i++) {
-                                  var label = cc.LabelTTF.create(testNames[i].title, "Arial", 24);
-                                  var menuItem = cc.MenuItemLabel.create(label, this.onMenuCallback, this);
-                                  this._itemMenu.addChild(menuItem, i + 10000);
-                                  menuItem.x = size.width / 2;
-                                  menuItem.y = (size.height - (i + 1) * 40);
+                        },
+                        menuCallback: function(sender){
+                            var nIndex = sender.zIndex - ITEM_TAG_BASIC;
+                            s_EventMenuItem[nIndex].test();
+                        }
+                  });
+                  cc.director.runScene(new MyScene());
+                }, this);
 
-                                  // enable disable
-                                  if ( !cc.sys.isNative) {
-                                      if( 'opengl' in cc.sys.capabilities ){
-                                          menuItem.enabled = (testNames[i].platforms & (1 << 1)) | (testNames[i].platforms & PLATFORM_HTML5_WEBGL);
-                                      }else{
-                                          menuItem.setEnabled( testNames[i].platforms & (1 << 1) );
-                                      }
-                                  } else {
-                                      menuItem.setEnabled( testNames[i].platforms & (1 << 1) );
-                                  }
-                              }
-
-                              this._itemMenu.width = size.width;
-                              this._itemMenu.height = (testNames.length + 1) * 40;
-                              this._itemMenu.x = cc.p(0,0).x;
-                              this._itemMenu.y = cc.p(0,0).y;
-                              this.addChild(this._itemMenu);
-                              this.addChild(menu, 1);
-
-                          }
-                      });
-                      cc.director.runScene(new MyScene());
-                  }, this);
-              };
-              cc.game.run("gameCanvas");
-          };
+            };
+            cc.game.run("gameCanvas");
+        };
     </script>
 </body>
 </html>

@@ -17,25 +17,15 @@
     //loader on first
     var accessLoad = true;
     var init = function(){
-        if (!accessLoad && d.getElementById("facebook-jssdk")) {
+        if (!accessLoad && FB) {
             return;
         }
-
-        window.fbAsyncInit = function() {
-            accessLoad = false;
-            FB.init({
-                appId : P.platformInfo['facebook']['appId'],//'472437549567003',
-                xfbml : P.platformInfo['facebook']['xfbml'],//true,
-                version : P.platformInfo['facebook']['version']//'v2.0'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/zh_CN/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(d, 'script', 'facebook-jssdk'));
+        accessLoad = false;
+        FB.init({
+            appId : P.platformInfo['facebook']['appId'],//'472437549567003',
+            xfbml : P.platformInfo['facebook']['xfbml'],//true,
+            version : P.platformInfo['facebook']['version']//'v2.0'
+        });
     };
 
     /*
@@ -154,7 +144,7 @@
     /*
         IAP
      */
-    p['IAP'] = P.IAP.extend({
+    P['IAP'] = P.IAP.extend({
 
         ctor: function(){
             init();

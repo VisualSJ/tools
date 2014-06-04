@@ -7,11 +7,11 @@
 </head>
 <body>
 <script>
-    var socket = io.connect('http://192.168.52.34:4000');
+    var socket = io.connect('http://localhost:4000/testpoint');
     socket.on('news', function (data) {
         console.log(data);
-        socket.emit('my other event', { my: 'data' });
     });
+    socket.send("Hello Socket.IO!");
 </script>
 </body>
 </html>

@@ -36,6 +36,20 @@
                             var ufb = Plugin.loadPlugin("UserFacebook");
                             ufb.logout();
                         }
+                    },
+                    {
+                        itemTitle: "isLogin",
+                        test: function(){
+                            var ufb = Plugin.loadPlugin("UserFacebook");
+                            var o = ufb.isLogined(function(status){
+                                if(status){
+                                    console.log("callback - login");
+                                }else{
+                                    console.log("callback - no login");
+                                }
+                            });
+                            console.log("sync - login: ", o);
+                        }
                     }
                 ];
 

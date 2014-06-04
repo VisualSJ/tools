@@ -36,7 +36,16 @@
         _isLogined: false,
 
         ctor: function(){
-            init();
+            var self = this;
+            init(function(){
+                FB.getLoginStatus(function(response) {
+                    if (response && response.status === 'connected') {
+                        self._isLogined = true;
+                    }else{
+                        self._isLogined = false;
+                    }
+                });
+            });
         },
 
         /**
@@ -72,7 +81,15 @@
          * @return {Boolean}
          */
         isLogined: function(callback){
-
+            FB.getLoginStatus(function(response) {
+                if (response && response.status === 'connected') {
+                    //login
+                    callback(true);
+                }else{
+                    callback(false);
+                }
+            });
+            return this._isLogined;
         }
 
     });

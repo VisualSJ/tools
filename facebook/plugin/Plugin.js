@@ -7,107 +7,61 @@
         return;
     }
 
-    var Plugin = {
+    //init
+    var config = cc.game.config.plugin;
 
-        platformInfo: {
-//            facebook: {
-//                appID: null,
-//                xfbml: true,
-//                version: "v2.0"
-//            }
+    var Plugin = cc.Class.extend({
+
+        config: config,
+        list: {},
+
+        init: function(){
+            //Init User
+            this.list[this.config['common']['user']].init(config['facebook']);
         },
 
-        loadPlugin: function(name){
-            if(Plugin[name]){
-                return new Plugin[name];
+        login: function(){
+            if(this.config['common']['user']){
+                var user = this.list[this.config['common']['user']];
+                return user.login.apply(user, arguments);
             }else{
-                cc.log("The plug-in does not exist");
+                cc.log("User initialization failed");
+            }
+        },
+        logout: function(){
+
+            if(this.config['common']['user']){
+                var user = this.list[this.config['common']['user']];
+                return user.logout.apply(user, arguments);
+            }else{
+                cc.log("User initialization failed");
+            }
+        },
+        isLogined: function(){
+
+            if(this.config['common']['user']){
+                var user = this.list[this.config['common']['user']];
+                return user.isLogined.apply(user, arguments);
+            }else{
+                cc.log("User initialization failed");
             }
         },
 
-        init: function(option){
-            this.platformInfo = option;
-        },
+        share: function(info, callback){},
 
-        //Empty implementation
-        unloadPlugin: function(){}
-    };
-
-    Plugin.User = cc.Class.extend({
-        /**
-         * @param {string} username
-         * @param {string} password
-         * @param {function} callback
-         */
-        login: function(username, password, callback){},
-
-        /**
-         * @param {function} callback
-         */
-        logout: function(callback){},
-
-        getSessionID: function(){},
-
-        /**
-         * @return {Boolean}
-         */
-        isLogined: function(){},
-
-        getUser: function(){},
-
-        getUserName: function(){},
-
-        getUserNick: function(){},
-
-        getUserID: function(){}
-    });
-
-    Plugin.Share = cc.Class.extend({
-        /**
-         * @param {string} info
-         * @param {function} callback
-         */
-        share: function(info, callback){}
-    });
-
-    Plugin.Social = cc.Class.extend({
-        /**
-         * @param {number} leadboardID
-         * @param {number} socre
-         */
         submitScore: function(leadboardID, socre){},
-
-        /**
-         * @param {number} leaderboardID
-         */
         showLeaderboard: function(leaderboardID){},
-
-        /**
-         * @param {string} achInfo
-         */
         unlockAchievement: function(achInfo){},
+        showAchievements: function(){},
 
-        showAchievements: function(){}
-    });
-
-    Plugin.ADS = cc.Class.extend({
         showAds: function(){},
-
         hideAds: function(){},
-
         queryPoints: function(){},
+        spendPoints: function(){},
 
-        spendPoints: function(){}
-    });
-
-    Plugin.IAP = cc.Class.extend({
-        /**
-         * @param info
-         * @param callback
-         */
         payForProduct: function(info, callback){}
     });
 
-    window.Plugin = Plugin;
+    window.Plugin = new Plugin();
 
 })(window, cc);

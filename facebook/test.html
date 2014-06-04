@@ -14,41 +14,32 @@
         window.onload = function(){
             cc.game.onStart = function(){
 
-                Plugin.init({
-                    facebook: {
-                        appId : '472437549567003',
-                        xfbml : true,
-                        version : 'v2.0'
-                    }
-                });
+                Plugin.init();
 
                 var s_EventMenuItem = [
                     {
                         itemTitle: "login",
                         test: function(){
-                            var ufb = Plugin.loadPlugin("UserFacebook");
-                            ufb.login();
+                            Plugin.login();
                         }
                     },
                     {
                         itemTitle: "logout",
                         test: function(){
-                            var ufb = Plugin.loadPlugin("UserFacebook");
-                            ufb.logout();
+                            Plugin.logout();
                         }
                     },
                     {
                         itemTitle: "isLogin",
                         test: function(){
-                            var ufb = Plugin.loadPlugin("UserFacebook");
-                            var o = ufb.isLogined(function(status){
+                            var o = Plugin.isLogined(function(status){
                                 if(status){
                                     console.log("callback - login");
                                 }else{
                                     console.log("callback - no login");
                                 }
                             });
-                            console.log("sync - login: ", o);
+                            console.log("sync - login: " + o);
                         }
                     }
                 ];

@@ -1,0 +1,23 @@
+{
+    "debugMode": 1,
+    "showFPS": true,
+    "frameRate": 60,
+    "id": "gameCanvas",
+    "renderMode": 0,
+    "plugin": {
+
+        "common": {
+            "user": "facebook",
+            "share": "facebook",
+            "iap": "facebook",
+            "social": "facebook",
+            "ads": "facebook"
+        },
+
+        "facebook": {
+            "appId" : "472437549567003",
+            "xfbml" : true,
+            "version" : "v2.0"
+        }
+    }
+}

@@ -14,41 +14,31 @@
         return;
     }
 
-    //loader on first
-    var accessLoad = true;
-    var init = function(){
-        if (!accessLoad && FB) {
-            return;
-        }
-        accessLoad = false;
-        FB.init({
-            appId : P.platformInfo['facebook']['appId'],//'472437549567003',
-            xfbml : P.platformInfo['facebook']['xfbml'],//true,
-            version : P.platformInfo['facebook']['version']//'v2.0'
-        });
-    };
 
-    /*
-        USER CLASS
-     */
-    P['UserFacebook'] = P.User.extend({
+    P['list']['facebook'] = {
 
-        _isLogined: false,
-
-        ctor: function(){
+        init: function(config){
+            if (!FB) {
+                return;
+            }
             var self = this;
-            init(function(){
-                FB.getLoginStatus(function(response) {
-                    if (response && response.status === 'connected') {
-                        console.log("init - login");
-                        self._isLogined = true;
-                    }else{
-                        console.log("init - not login");
-                        self._isLogined = false;
-                    }
-                });
+            self._isLogined = false;
+            FB.init({
+                appId : config['appId'],//'472437549567003',
+                xfbml : config['xfbml'],//true,
+                version : config['version']//'v2.0'
+            });
+            FB.getLoginStatus(function(response) {
+                if (response && response.status === 'connected') {
+                    //login
+                    self._isLogined = true;
+                }
             });
         },
+
+        /*
+            USER
+         */
 
         /**
          * @param {function} callback
@@ -60,7 +50,6 @@
                     self._isLogined = true;
                     console.log('login - success');
                 } else {
-                    self._isLogined = false;
                     console.log('login - failure');
                 }
             });
@@ -72,8 +61,8 @@
         logout: function(callback){
             FB.logout(function(response) {
                 // user is now logged out
-                console.log("logout - begin");
-                callback(response);
+                self._isLogined = false;
+                typeof callback === 'undefined' && callback(response);
             });
         },
 
@@ -81,18 +70,19 @@
          * @return {Boolean}
          */
         isLogined: function(callback){
+            var self = this;
+
             FB.getLoginStatus(function(response) {
                 if (response && response.status === 'connected') {
                     //login
-                    console.log("isLogined - true");
-                    callback(true);
+                    self._isLogined = true;
+                    typeof callback === 'function' && callback(true);
                 }else{
-                    console.log("isLogined - false");
-                    callback(false);
+                    typeof callback === 'function' && callback(false);
                 }
             });
             return this._isLogined;
-        }
+        },
 
         /**
          *                     FB.api('/me', function(response) {
@@ -100,87 +90,12 @@
                     });
          */
 
-
-    });
-
-    /*
-        SHARE CLASS
-     */
-    P['ShareFacebook'] = P.Share.extend({
-
-        ctor: function(){
-            init();
-        },
-
-        /**
-         * @param {string} info
-         * @param {function} callback
+        /*
+            SHARE
          */
-        share: function(info, callback){
+        share: function(info){
 
         }
-    });
 
-    /*
-        SOCIAL CLASS
-     */
-    P['SocialFacebook'] = P.Social.extend({
-
-        ctor: function(){
-            init();
-        },
-
-        /**
-         * @param {number} leadboardID
-         * @param {number} socre
-         */
-        submitScore: function(leadboardID, socre){},
-
-        /**
-         * @param {number} leaderboardID
-         */
-        showLeaderboard: function(leaderboardID){},
-
-        /**
-         * @param {string} achInfo
-         */
-        unlockAchievement: function(achInfo){},
-
-        showAchievements: function(){}
-    });
-
-    /*
-        ADS CLASS
-     */
-    P['ADSFacebook'] = P.ADS.extend({
-
-        ctor: function(){
-            init();
-        },
-
-        showAds: function(){},
-
-        hideAds: function(){},
-
-        queryPoints: function(){},
-
-        spendPoints: function(){}
-    });
-
-    /*
-        IAP
-     */
-    P['IAP'] = P.IAP.extend({
-
-        ctor: function(){
-            init();
-        },
-
-        /**
-         * @param info
-         * @param callback
-         */
-        payForProduct: function(info, callback){}
-    });
-
+    };
 })(document, window, Plugin);

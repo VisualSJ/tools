@@ -62,7 +62,7 @@
             FB.logout(function(response) {
                 // user is now logged out
                 self._isLogined = false;
-                typeof callback === 'undefined' && callback(response);
+                typeof callback === 'function' && callback(response);
             });
         },
 

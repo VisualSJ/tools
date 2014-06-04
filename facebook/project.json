@@ -18,6 +18,15 @@
             "appId" : "472437549567003",
             "xfbml" : true,
             "version" : "v2.0"
+        },
+
+        "qzone": {
+            "appId": 0
         }
-    }
+    },
+    "jsList" : [
+        "plugin/Plugin.js",
+        "plugin/platform/facebook.js",
+        "plugin/platform/facebook_sdk.js"
+    ]
 }

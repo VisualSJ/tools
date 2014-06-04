@@ -15,9 +15,10 @@
         config: config,
         list: {},
 
-        init: function(){
+        init: function(userConfig){
             //Init User
             this.list[this.config['common']['user']].init(config['facebook']);
+            //Init Share
         },
 
         login: function(){
@@ -47,7 +48,15 @@
             }
         },
 
-        share: function(info, callback){},
+        share: function(info, callback){
+
+            if(this.config['common']['share']){
+                var share = this.list[this.config['common']['share']];
+                return share.share.apply(share, arguments);
+            }else{
+                cc.log("Share initialization failed");
+            }
+        },
 
         submitScore: function(leadboardID, socre){},
         showLeaderboard: function(leaderboardID){},

@@ -6,9 +6,9 @@
 </head>
 <body>	 
     <canvas id="gameCanvas" width="800" height="450"></canvas>
-    <script src="./plugin/Plugin.js"></script>
-    <script src="./plugin/platform/facebook.js"></script>
-    <script src="./plugin/platform/facebook_sdk.js"></script>
+    <!--<script src="./plugin/Plugin.js"></script>-->
+    <!--<script src="./plugin/platform/facebook.js"></script>-->
+    <!--<script src="./plugin/platform/facebook_sdk.js"></script>-->
     <script type="text/javascript">
         var ITEM_TAG_BASIC = 1000;
         window.onload = function(){
@@ -20,19 +20,36 @@
                     {
                         itemTitle: "login",
                         test: function(){
-                            Plugin.login();
+                            Plugin.login(function(status){
+                                console.log("login callback, status: " + status);
+                            });
                         }
                     },
                     {
                         itemTitle: "logout",
                         test: function(){
-                            Plugin.logout();
+                            Plugin.logout(function(status){
+                                console.log("logout callback, status: " + status);
+                            });
                         }
                     },
                     {
                         itemTitle: "isLogin",
                         test: function(){
                             var o = Plugin.isLogined(function(status){
+                                if(status){
+                                    console.log("callback - login");
+                                }else{
+                                    console.log("callback - no login");
+                                }
+                            });
+                            console.log("sync - login: " + o);
+                        }
+                    },
+                    {
+                        itemTitle: "share",
+                        test: function(){
+                            var o = Plugin.share("123", function(status){
                                 if(status){
                                     console.log("callback - login");
                                 }else{

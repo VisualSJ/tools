@@ -48,9 +48,10 @@
             FB.login(function(response) {
                 if (response.authResponse) {
                     self._isLogined = true;
-                    console.log('login - success');
+                    typeof callback === 'function' && callback(true);
                 } else {
-                    console.log('login - failure');
+                    self._isLogined = false;
+                    typeof callback === 'function' && callback(false);
                 }
             });
         },
@@ -78,6 +79,7 @@
                     self._isLogined = true;
                     typeof callback === 'function' && callback(true);
                 }else{
+                    self._isLogined = false;
                     typeof callback === 'function' && callback(false);
                 }
             });
@@ -93,8 +95,13 @@
         /*
             SHARE
          */
-        share: function(info){
-
+        share: function(info, callback){
+            FB.ui({
+                method: 'share',
+                href: 'https://developers.facebook.com/docs/'
+            }, function(response){
+                typeof callback === 'function' && callback(response);
+            });
         }
 
     };

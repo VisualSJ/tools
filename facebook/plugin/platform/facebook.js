@@ -40,8 +40,10 @@
             init(function(){
                 FB.getLoginStatus(function(response) {
                     if (response && response.status === 'connected') {
+                        console.log("init - login");
                         self._isLogined = true;
                     }else{
+                        console.log("init - not login");
                         self._isLogined = false;
                     }
                 });
@@ -56,10 +58,10 @@
             FB.login(function(response) {
                 if (response.authResponse) {
                     self._isLogined = true;
-                    console.log('Welcome!  Fetching your information.... ');
+                    console.log('login - success');
                 } else {
                     self._isLogined = false;
-                    console.log('User cancelled login or did not fully authorize.');
+                    console.log('login - failure');
                 }
             });
         },
@@ -70,6 +72,7 @@
         logout: function(callback){
             FB.logout(function(response) {
                 // user is now logged out
+                console.log("logout - begin");
                 callback(response);
             });
         },

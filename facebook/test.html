@@ -14,8 +14,6 @@
         window.onload = function(){
             cc.game.onStart = function(){
 
-                Plugin.init();
-
                 var s_EventMenuItem = [
                     {
                         itemTitle: "login",
@@ -24,20 +22,18 @@
                                 console.log("login callback, status: " + status);
                             });
                         }
-                    },
-                    {
+                    },{
                         itemTitle: "logout",
                         test: function(){
                             Plugin.logout(function(status){
                                 console.log("logout callback, status: " + status);
                             });
                         }
-                    },
-                    {
+                    },{
                         itemTitle: "isLogin",
                         test: function(){
                             var o = Plugin.isLogined(function(status){
-                                if(status){
+                                if(status === 0){
                                     console.log("callback - login");
                                 }else{
                                     console.log("callback - no login");
@@ -45,18 +41,32 @@
                             });
                             console.log("sync - login: " + o);
                         }
-                    },
-                    {
-                        itemTitle: "share",
+                    },{
+                        itemTitle: "share web page",
                         test: function(){
-                            var o = Plugin.share("123", function(status){
-                                if(status){
-                                    console.log("callback - login");
+                            Plugin.share({
+                                link: "http://code.itharbors.com"
+                            }, function(status){
+                                if(status === 0){
+                                    console.log("callback - share");
                                 }else{
-                                    console.log("callback - no login");
+                                    console.log("callback - no share");
                                 }
                             });
-                            console.log("sync - login: " + o);
+                        }
+                    },{
+                        itemTitle: "submitScore",
+                        test: function(){
+                            Plugin.submitScore(function(){
+
+                            });
+                        }
+                    },{
+                        itemTitle: "showScore",
+                        test: function(){
+                            Plugin.showUserScore(function(){
+
+                            });
                         }
                     }
                 ];

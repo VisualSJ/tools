@@ -18,8 +18,18 @@
                     {
                         itemTitle: "login",
                         test: function(){
+                            /*
                             Plugin.login(function(status){
                                 console.log("login callback, status: " + status);
+                            });
+                            */
+                            var pluginManager = plugin.PluginManager.getInstance();
+                            var ufb = pluginManager.loadPlugin("UserFacebook");
+                            ufb.login(function(status){
+                                console.log("login callback, status: " + status);
+                            });
+                            ufb.callFuncWithParam('api', "/472437549567003/scores", function(res){
+                                console.log(res);
                             });
                         }
                     },{
@@ -62,9 +72,9 @@
                             });
                         }
                     },{
-                        itemTitle: "showScore",
+                        itemTitle: "showLeaderboard",
                         test: function(){
-                            Plugin.showUserScore(function(){
+                            Plugin.showLeaderboard(function(){
 
                             });
                         }

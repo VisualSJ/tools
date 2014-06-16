@@ -18,13 +18,17 @@
         '4': 'Interrupt operation'
     };
 
+    var configCache = {};
+    var isInit = false;
+
     P.extend(name, {
         init: function(config){
-            if (!FB) {
+            if (!FB || isInit) {
                 return;
             }
             var self = this;
             self._isLogined = false;
+            configCache = config;
             FB.init({
                 appId : config['appId'],
                 xfbml : config['xfbml'],
@@ -38,6 +42,7 @@
                     userInfo = response.authResponse;
                 }
             });
+            isInit = true;
         },
 
         /*
@@ -56,7 +61,7 @@
                     } else {
                         typeof callback === 'function' && callback(1, errMsg[1]);
                     }
-                });
+                }, { scope: '' });
             },
 
             logout: function(callback){
@@ -127,11 +132,11 @@
                 function(response) {
                     if (response) {
                         if(response.post_id)
-                            callback(0);
+                            typeof callback === 'function' && callback(0);
                         else
-                            callback(3, errMsg[3]);
+                            typeof callback === 'function' && callback(3, errMsg[3]);
                     } else {
-                        callback(4, errMsg[4]);
+                        typeof callback === 'function' && callback(4, errMsg[4]);
                     }
                 });
             }
@@ -145,22 +150,26 @@
                 if(userInfo.userID){
                     FB.api("/"+userInfo.userID+"/scores", 'post', {score: 100}, function(response){
                         console.log(response);
+                        if(response){
+                            typeof callback === 'function' && callback(0, errMsg[0]);
+                        }else{
+                            typeof callback === 'function' && callback(1, errMsg[1]);
+                        }
                     });
                 }else{
                     callback(3, errMsg[3]);
                 }
             },
-            showUserScore: function(callback){
-                if(userInfo.userID){
-                    FB.api("/"+userInfo.userID+"/scores", function(response){
-                        console.log(response);
+            showLeaderboard: function(callback){
+                if(configCache['appId']){
+                    FB.api("/"+configCache['appId']+"/scores", function(response){
+                        if(response['error']){
+                            typeof callback === 'function' && callback(1, response['message']);
+                        }else if(response['data']){
+                            typeof callback === 'function' && callback(0, response['data']);
+                        }
                     });
-                }else{
-                    callback(3, errMsg[3]);
                 }
-            },
-            showLeaderboard: function(){
-
             },
             unlockAchievement: function(){
 
@@ -168,6 +177,14 @@
             showAchievements: function(){
 
             }
+        },
+
+        /*
+            COMMON
+         */
+        common: {
+            ui: FB.ui,
+            api: FB.api
         }
     });
 

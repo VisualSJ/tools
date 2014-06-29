@@ -40,6 +40,8 @@
                     self._isLogined = true;
                     //save user info
                     userInfo = response.authResponse;
+                }else{
+                    self._isLogined = false;
                 }
             });
             isInit = true;
@@ -69,7 +71,8 @@
                     if(response.authResponse){
                         // user is now logged out
                         self._isLogined = false;
-                        typeof callback === 'function' && callback(0);
+                        userInfo = {};
+                        typeof callback === 'function' && callback(0, errMsg[0]);
                     }else{
                         typeof callback === 'function' && callback(1, errMsg[1]);
                     }
@@ -91,6 +94,14 @@
                     }
                 });
                 return this._isLogined;
+            },
+
+            getUserId: function(){
+                return userInfo['userID'];
+            },
+
+            getToken: function(){
+                return userInfo['accessToken'];
             }
         },
 
@@ -132,7 +143,7 @@
                 function(response) {
                     if (response) {
                         if(response.post_id)
-                            typeof callback === 'function' && callback(0);
+                            typeof callback === 'function' && callback(0, errMsg[0]);
                         else
                             typeof callback === 'function' && callback(3, errMsg[3]);
                     } else {
@@ -179,14 +190,17 @@
             }
         },
 
-        /*
-            COMMON
-         */
-        common: {
-            ui: FB.ui,
-            api: FB.api
-        }
+        dialog: function(options){
+            console.log(options)
+            FB.ui({
+                method: 'dialog'
+
+            });
+        },
+
+        ui: FB.ui,
+        api: FB.api
     });
 
 
-})(Plugin);
+})(plugin);

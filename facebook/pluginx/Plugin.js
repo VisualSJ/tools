@@ -1,12 +1,10 @@
 (function(w){
 
-    //没引入cocos2d
     if(cc === undefined){
         return;
     }
 
-    //获取配置文件
-    var config = cc.game.config.plugin;
+    var config = cc.game.config.plugin || {};
     var SDK = {
         user: null,
         share: null,
@@ -14,17 +12,49 @@
     };
 
     var Plugin = {
-        //获取当前使用的模块名字
         getSDK: function(){
             return SDK;
         },
-        //判断方法是否被当前初始化后的Plugin所支持
         isSupportFunction: function(name){
             if(typeof this[name] === 'function'){
                 return true;
             }else{
                 return false;
             }
+        },
+        getUserPlugin: function(){
+            return {
+                callStringFuncWithParam: function(){
+                    return this.callFuncWithParam.apply(this, arguments);
+                },
+                callFuncWithParam: function(name, opt){
+                    if(config['common'] && config['common']['user'] && pluginList[config['common']['user']]){
+                        var _plugin = pluginList[config['common']['user']];
+                        if(typeof _plugin.user[name] == 'function'){
+                            return _plugin.user[name](opt);
+                        }else if(typeof _plugin[name] == 'function'){
+                            return _plugin[name](opt);
+                        }
+                    }
+                }
+            };
+        },
+        getSharePlugin: function(){
+            return {
+                callStringFuncWithParam: function(){
+                    return this.callFuncWithParam.apply(this, arguments);
+                },
+                callFuncWithParam: function(name, opt){
+                    if(config['common'] && config['common']['share'] && pluginList[config['common']['share']]){
+                        var _plugin = pluginList[config['common']['share']];
+                        if(typeof _plugin.share[name] == 'function'){
+                            return _plugin.share[name](opt);
+                        }else if(typeof _plugin[name] == 'function'){
+                            return _plugin[name](opt);
+                        }
+                    }
+                }
+            };
         }
     };
 
@@ -33,78 +63,18 @@
     Plugin.extend = function(name, method){
         var use = false;
         for(var p in config['common']){
-            //把对应类中的方法复制过来
             if(config['common'][p] == name){
                 for(var o in method[p]){
-                    this[o] = method[p][o];
+                    Plugin[o] = method[p][o];
                 }
                 use = true;
                 SDK[p] = name;
             }
         }
         if(use){
-            //如果使用到了，则初始化
             method.init(config[name]);
         }
         pluginList[name] = method;
-    };
-
-    w['Plugin'] = Plugin;
-
-    plugin.PluginParam = function(type, value){
-        var paramType = plugin.PluginParam.ParamType,tmpValue;
-        switch(type){
-            case paramType.TypeInt:
-                tmpValue = parseInt(value);
-                break;
-            case paramType.TypeFloat:
-                tmpValue = parseFloat(value);
-                break;
-            case paramType.TypeBool:
-                tmpValue = Boolean(value);
-                break;
-            case paramType.TypeString:
-                tmpValue = String(value);
-                break;
-            case paramType.TypeStringMap:
-                tmpValue = JSON.stringify(value);
-                break;
-            default:
-                tmpValue = value;
-        }
-        return tmpValue
-    };
-
-    plugin.PluginParam.ParamType = {
-        TypeInt:1,
-        TypeFloat:2,
-        TypeBool:3,
-        TypeString:4,
-        TypeStringMap:5
-    };
-
-    plugin.PluginParam.AdsResultCode = {
-        AdsReceived:0,
-        FullScreenViewShown:1,
-        FullScreenViewDismissed:2,
-        PointsSpendSucceed:3,
-        PointsSpendFailed:4,
-        NetworkError:5,
-        UnknownError:6
-    };
-
-    plugin.PluginParam.PayResultCode = {
-        PaySuccess:0,
-        PayFail:1,
-        PayCancel:2,
-        PayTimeOut:3
-    };
-
-    plugin.PluginParam.ShareResultCode = {
-        ShareSuccess:0,
-        ShareFail:1,
-        ShareCancel:2,
-        ShareTimeOut:3
     };
 
     var pluginManager = {
@@ -148,11 +118,75 @@
     };
 
     w['plugin'] = {
+        extend: Plugin.extend,
+        agentManager: Plugin,
+        AgentManager: {
+            getInstance: function(){
+                return plugin.agentManager;
+            }
+        },
         PluginManager: {
             getInstance: function(){
                 return pluginManager;
             }
         }
+    };
+
+
+    plugin.PluginParam = function(type, value){
+        var paramType = plugin.PluginParam.ParamType,tmpValue;
+        switch(type){
+            case paramType.TypeInt:
+                tmpValue = parseInt(value);
+                break;
+            case paramType.TypeFloat:
+                tmpValue = parseFloat(value);
+                break;
+            case paramType.TypeBool:
+                tmpValue = Boolean(value);
+                break;
+            case paramType.TypeString:
+                tmpValue = String(value);
+                break;
+            case paramType.TypeStringMap:
+                tmpValue = value//JSON.stringify(value);
+                break;
+            default:
+                tmpValue = value;
+        }
+        return tmpValue
+    };
+
+    plugin.PluginParam.ParamType = {
+        TypeInt:1,
+        TypeFloat:2,
+        TypeBool:3,
+        TypeString:4,
+        TypeStringMap:5
+    };
+
+    plugin.PluginParam.AdsResultCode = {
+        AdsReceived:0,
+        FullScreenViewShown:1,
+        FullScreenViewDismissed:2,
+        PointsSpendSucceed:3,
+        PointsSpendFailed:4,
+        NetworkError:5,
+        UnknownError:6
+    };
+
+    plugin.PluginParam.PayResultCode = {
+        PaySuccess:0,
+        PayFail:1,
+        PayCancel:2,
+        PayTimeOut:3
+    };
+
+    plugin.PluginParam.ShareResultCode = {
+        ShareSuccess:0,
+        ShareFail:1,
+        ShareCancel:2,
+        ShareTimeOut:3
     };
 
 })(window);

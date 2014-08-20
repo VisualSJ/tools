@@ -7,9 +7,13 @@ io.sockets.on('connection', function (socket) {
         socket.emit('message', "Received message: " + data);
     });
 
-    socket.on("echotest", function(data){
+    socket.on("echotest", function(data, fn){
         socket.emit('message', "Received echotest: " + data);
+        console.log(123);
+        console.log(fn);
+        fn();
     });
+
 });
 
 io.of("/testpoint").on('connection', function (socket) {

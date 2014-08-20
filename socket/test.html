@@ -7,7 +7,7 @@
 </head>
 <body>
 <script>
-    var socket = io.connect('http://localhost:4000/testpoint');
+    var socket = io.connect('http://tools.itharbors.com:4000');
     socket.on('news', function (data) {
         console.log(data);
     });

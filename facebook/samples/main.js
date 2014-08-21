@@ -166,9 +166,13 @@ cc.game.onStart = function(){
             callback: function(){
                 statusLabel.setString("... Payments ...");
                 facebook.pay({
-                    product: 'http://tools.itharbors.com/facebook/pay/item1.html'
+                    product: 'https://www.cocos2d-x.org/demo/facebooktest/samples/pay/item1.html'
                 }, function(id, response){
-                    statusLabel.setString(JSON.parse(response));
+                    if(response['status'] === 'completed'){
+                        statusLabel.setString("Success: " + response['amount'] + response['currency']);
+                    }else{
+                        statusLabel.setString("Abnormal: " + response['status']);
+                    }
                 });
             }
         }

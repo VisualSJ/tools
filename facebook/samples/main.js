@@ -204,7 +204,19 @@ cc.game.onStart = function(){
                 })(i);
             }
 
+            //full screen
+            var FSmenu = new cc.Menu(
+                cc.MenuItemLabel.create(
+                    cc.LabelTTF.create("Full Screen", "Arial", 15),
+                    function(){
+                        cc.screen.requestFullScreen();
+                    }, this)
+            );
+            FSmenu.setColor(cc.color.BLACK);
+            FSmenu.x = 740;
+            FSmenu.y = 20;
             this.addChild(menu);
+            this.addChild(FSmenu);
         }
     });
 

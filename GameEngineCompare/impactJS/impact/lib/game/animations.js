@@ -33,13 +33,12 @@ ig.module(
                 // Draw all entities and backgroundMaps
                 this.parent();
 
-
-                // Add your own drawing code here
-                var x = ig.system.width/2,
-                    y = ig.system.height/2;
-
-                for(var i=0;i<5000;i++){
-                    this.addFish( (i*50)%800, (((i/16) | 0) * 26) % 494);
+                var a = 40;
+                var b = 80;
+                for(var i=0;i<a*b;i++){
+                    var x = (i % a) * 50;
+                    var y = (i / a | 0) * 25;
+                    this.addFish(x, y, 'fish');
                 }
 
 

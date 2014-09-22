@@ -8,6 +8,12 @@ ig.module(
 )
 .defines(function(){
 
+var num = 0;
+setInterval(function(){
+    var o = document.getElementById("fps");
+    if(o) o.innerHTML = num;
+    num = 0;
+}, 1000);
 MyGame = ig.Game.extend({
 	
 	// Load a font
@@ -21,7 +27,7 @@ MyGame = ig.Game.extend({
 	update: function() {
 		// Update all entities and backgroundMaps
 		this.parent();
-		
+        num++;
 		// Add your own, additional update code here
 	},
 	
@@ -29,15 +35,13 @@ MyGame = ig.Game.extend({
 		// Draw all entities and backgroundMaps
 		this.parent();
 		
-		
-		// Add your own drawing code here
-		var x = ig.system.width/2,
-			y = ig.system.height/2;
-		
 //		this.font.draw( 'It Works!', x, y, ig.Font.ALIGN.CENTER );
-
-        for(var i=0;i<5000;i++){
-            this.addFish( (i*50)%800, (((i/16) | 0) * 26) % 494);
+        var a = 40;
+        var b = 80;
+        for(var i=0;i<a*b;i++){
+            var x = (i % a) * 50;
+            var y = (i / a | 0) * 25;
+            this.addFish(x, y, 'fish');
         }
 
 
@@ -51,6 +55,6 @@ MyGame = ig.Game.extend({
 
 // Start the Game with 60fps, a resolution of 320x240, scaled
 // up by a factor of 2
-ig.main( '#canvas', MyGame, 60, 800, 500, 1 );
+ig.main( '#canvas', MyGame, 60, 2000, 2000, 1 );
 
 });

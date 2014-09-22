@@ -11,7 +11,7 @@
 
 <script>
     var renderMode = (location.search && location.search.toLowerCase().indexOf("webgl") > -1)?Phaser.WEBGL:Phaser.CANVAS;
-    var game = new Phaser.Game(800, 500, renderMode, 'phaser-example', { preload: preload, create: create, update: update });
+    var game = new Phaser.Game(2000, 2000, renderMode, 'phaser-example', { preload: preload, create: create, update: update });
 
     function preload() {
 
@@ -20,23 +20,17 @@
     }
 
     function create() {
-        console.log(game.time.fps);
-
         //  This creates a simple sprite that is using our loaded image and
         //  displays it on-screen
-        console.time("add 5000 sprites");
-        for(var i=0;i<5000;i++){
-//            this.addFish(fish[(imgIndex++)%fish.length]);
-            var _t = game.add.sprite((i*50)%800, (((i/16) | 0) * 26) % 494, 'fish');
-            var anim = _t.animations.add('walk');
-
-            anim.onLoop.add(animationLooped, this);
-
-            anim.play(2, true);
-
-
+        var a = 40;
+        var b = 80;
+        for(var i=0;i<a*b;i++){
+            var x = (i % a) * 50;
+            var y = (i / a | 0) * 25;
+            var tmp = game.add.group();
+            tmp.create(x, y, 'fish');
+            game.add.tween(tmp).to({y: 180}, 5000, null, true, Number.MAX_VALUE, true);
         }
-        console.timeEnd("add 5000 sprites");
 
     }
 

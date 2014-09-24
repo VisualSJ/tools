@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>pixi.js example 1</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #000000;
+		}
+	</style>
+	<script src="pixi.dev.js"></script>
+
+</head>
+<body>
+<style>
+    #fps{color: #fff;z-index: 9999;font-size: 26px;position: absolute;}
+    #info{color: #fff;z-index: 9999;font-size: 26px;position: absolute;left: 90px;}
+    .btn{height: 30px;position: absolute;z-index: 9999;left: 0;font-size: 20px;}
+    #addition{top: 40px;width: 30px;}
+    #subtraction{top: 80px;width: 30px;}
+    #rotate{top: 120px;width: 130px;}
+    #move{top: 160px;width: 130px;}
+    #scale{top: 200px;width: 130px;}
+    #all{top: 240px;width: 130px;}
+</style>
+<div id="fps">000</div>
+<div id="info">Unknown</div>
+<button class="btn" id="addition">+</button>
+<button class="btn" id="subtraction">-</button>
+<button class="btn" id="rotate">rotate</button>
+<button class="btn" id="move">move</button>
+<button class="btn" id="scale">scale</button>
+<button class="btn" id="all">all</button>
+<script>
+
+    var stage = new PIXI.Stage();
+
+    var renderer = PIXI.autoDetectRenderer(2000, 2000);
+
+    document.body.appendChild(renderer.view);
+
+    requestAnimFrame(animate);
+
+    var texture = PIXI.Texture.fromImage("../impact/tools/anim1.png");
+    var img = document.createElement("img");
+    img.src = "../impact/tools/anim1.png";
+    img.addEventListener("load", function(){
+        texture.frame.x = 50;
+        texture.frame.width = 50;
+        texture.crop.width = 50;
+    });
+
+    var TestScene = [
+        {a: 10, b: 20}, //200
+        {a: 15, b: 30}, //450
+        {a: 20, b: 40}, //800
+        {a: 25, b: 50}, //1250
+        {a: 30, b: 60}, //1800
+        {a: 35, b: 70}, //2450
+        {a: 40, b: 80}, //3200
+    ];
+
+    //fish元素队列
+    var fishList = [];
+
+    var level = 0;
+    var addition = document.getElementById("addition");
+    if(addition){
+        addition.addEventListener("click", function(){
+            level++;
+            if(TestScene.length <= level) level = TestScene.length - 1;
+            createFish(TestScene[level], fishList);
+        }, false);
+    }
+    var subtraction = document.getElementById("subtraction");
+    if(subtraction){
+        subtraction.addEventListener("click", function(){
+            level--;
+            if(level <= 0) level = 0;
+            createFish(TestScene[level], fishList);
+        }, false);
+    }
+    var rotateBtn = document.getElementById("rotate");
+    if(rotateBtn){
+        rotateBtn.addEventListener("click", function(){
+            createFish(TestScene[level], fishList);
+            rotate(fishList);
+        }, false);
+    }
+    var moveBtn = document.getElementById("move");
+    if(moveBtn){
+        moveBtn.addEventListener("click", function(){
+            createFish(TestScene[level], fishList);
+            move(fishList);
+        }, false);
+    }
+    var scaleBtn = document.getElementById("scale");
+    if(scaleBtn){
+        scaleBtn.addEventListener("click", function(){
+            createFish(TestScene[level], fishList);
+            scale(fishList);
+        }, false);
+    }
+    var allBtn = document.getElementById("all");
+    if(allBtn){
+        allBtn.addEventListener("click", function(){
+            createFish(TestScene[level], fishList);
+            all(fishList);
+        }, false);
+    }
+
+    createFish(TestScene[level], fishList);
+
+
+
+    function createFish(){
+        _rotate = undefined;
+        _move = undefined;
+        _scale = undefined;
+        _all = undefined;
+        _num = 0;
+        while(fishList.length){
+            stage.removeChild(fishList.shift());
+        }
+
+        var a = TestScene[level].a;
+        var b = TestScene[level].b;
+        var totalNum = a * b;
+        var info = document.getElementById("info");
+        if(info){
+            info.innerHTML = totalNum.toString();
+        }
+
+        for(var i=0; i<totalNum; i++){
+            var fish = new PIXI.Sprite(texture);
+            fish.anchor.x = 0.5;
+            fish.anchor.y = 0.5;
+            fish.position.x = (i % a) * 50 + 25;
+            fish.position.y = (i / a | 0) * 25 + 13;
+            stage.addChild(fish);
+            fishList.push(fish);
+        }
+    }
+
+    var _rotate = undefined;
+    function rotate(){
+        _rotate = 0;
+    }
+
+    var _move = undefined;
+    function move(){
+        _move = 0;
+    }
+
+    var _scale = undefined;
+    function scale(){
+        _scale = 0;
+    }
+
+    var _all = undefined;
+    function all(){
+        _all = 0;
+    }
+
+    var fpsElem = document.getElementById("fps");
+    var fpsNum = 0;
+    setInterval(function(){
+        fpsElem && (fpsElem.innerHTML = fpsNum);
+        fpsNum = 0;
+    }, 1000);
+
+    var _num = 0;
+    function animate() {
+        fpsNum++;
+
+        if(_rotate !== undefined){
+            _num++;
+            if(_num > 2){
+                _num = 0;
+                _rotate += 0.05;
+                for(var i=0; i<fishList.length; i++){
+                    fishList[i].rotation = _rotate;
+                }
+                if(_rotate >= 6.3){
+                    _rotate = undefined;
+                }
+            }
+        }
+        if(_move != undefined){
+            _num++;
+            if(_num > 2){
+                _num = 0;
+                _move++;
+                for(var i=0; i<fishList.length; i++){
+                    fishList[i].position.x += 0.5;
+                }
+                if(_move >= 100){
+                    _move = undefined;
+                }
+            }
+        }
+        if(_scale != undefined){
+            _num++;
+            if(_num > 2){
+                _num = 0;
+                _scale++;
+                for(var i=0; i<fishList.length; i++){
+                    fishList[i].scale.x += 0.01;
+                }
+                if(_scale >= 100){
+                    _scale = undefined;
+                }
+            }
+        }
+        if(_all != undefined){
+            _num++;
+            if(_num > 2){
+                _num = 0;
+                _all++;
+                for(var i=0; i<fishList.length; i++){
+                    fishList[i].rotation += 0.063;
+                    fishList[i].position.x += 0.5;
+                    fishList[i].scale.x += 0.01;
+                }
+                if(_all >= 100){
+                    _all = undefined;
+                }
+            }
+        }
+
+        renderer.render(stage);
+        requestAnimFrame(animate);
+    }
+
+</script>
+
+</body>
+</html>

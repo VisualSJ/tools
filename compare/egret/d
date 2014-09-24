@@ -1,0 +1,9 @@
+
+<style>
+    #fps{color: #fff;z-index: 9999;font-size: 26px;position: absolute;}
+    #addition{font-size: 20px;position: absolute;z-index: 9999;left: 0;top: 40px;width: 30px;height: 30px;}
+    #subtraction{font-size: 20px;position: absolute;z-index: 9999;left: 0;top: 80px;width: 30px;height: 30px;}
+</style>
+<div id="fps">000</div>
+<button id="addition">+</button>
+<button id="subtraction">-</button>

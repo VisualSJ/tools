@@ -55,24 +55,28 @@ MyGame = ig.Game.extend({
         var rotate = document.getElementById("rotate");
         if(rotate){
             rotate.addEventListener("click", function(){
+                self.createFish(TestScene[level]);
                 self.rotate();
             }, false);
         }
         var move = document.getElementById("move");
         if(move){
             move.addEventListener("click", function(){
+                self.createFish(TestScene[level]);
                 self.move();
             }, false);
         }
         var scale = document.getElementById("scale");
         if(scale){
             scale.addEventListener("click", function(){
+                self.createFish(TestScene[level]);
                 self.scale();
             }, false);
         }
         var all = document.getElementById("all");
         if(all){
             all.addEventListener("click", function(){
+                self.createFish(TestScene[level]);
                 self.all();
             }, false);
         }

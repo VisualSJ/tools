@@ -6,6 +6,8 @@
     "renderMode" : 1,
     "engineDir":"./cocos2d-html5",
 
+    "modules"       : ["cocos2d", "extensions", "external"],
+
     "jsList" : [
         "src/resource.js",
         "src/myApp.js"

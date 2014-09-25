@@ -47,41 +47,41 @@ var egret;
         };
 
         HTML5TouchContext.prototype.run = function () {
-            var that = this;
-            if (window.navigator.msPointerEnabled) {
-                document.body.addEventListener("MSPointerDown", function (event) {
-                    that._onTouchBegin(event);
-                    that.prevent(event);
-                }, false);
-                document.body.addEventListener("MSPointerMove", function (event) {
-                    that._onTouchMove(event);
-                    that.prevent(event);
-                }, false);
-                document.body.addEventListener("MSPointerUp", function (event) {
-                    that._onTouchEnd(event);
-                    that.prevent(event);
-                }, false);
-            } else if (egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE) {
-                this.addTouchListener();
-            } else if (egret.MainContext.deviceType == egret.MainContext.DEVICE_PC) {
-                this.addTouchListener();
-                this.addMouseListener();
-            }
-
-            window.addEventListener("mousedown", function (event) {
-                if (!that.inOutOfCanvas(event)) {
-                    that._isTouchDown = true;
-                } else {
-                    that.dispatchLeaveStageEvent();
-                }
-            });
-
-            window.addEventListener("mouseup", function (event) {
-                if (that._isTouchDown && that.inOutOfCanvas(event)) {
-                    that.dispatchLeaveStageEvent();
-                }
-                that._isTouchDown = false;
-            });
+//            var that = this;
+//            if (window.navigator.msPointerEnabled) {
+//                document.body.addEventListener("MSPointerDown", function (event) {
+//                    that._onTouchBegin(event);
+//                    that.prevent(event);
+//                }, false);
+//                document.body.addEventListener("MSPointerMove", function (event) {
+//                    that._onTouchMove(event);
+//                    that.prevent(event);
+//                }, false);
+//                document.body.addEventListener("MSPointerUp", function (event) {
+//                    that._onTouchEnd(event);
+//                    that.prevent(event);
+//                }, false);
+//            } else if (egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE) {
+//                this.addTouchListener();
+//            } else if (egret.MainContext.deviceType == egret.MainContext.DEVICE_PC) {
+//                this.addTouchListener();
+//                this.addMouseListener();
+//            }
+//
+//            window.addEventListener("mousedown", function (event) {
+//                if (!that.inOutOfCanvas(event)) {
+//                    that._isTouchDown = true;
+//                } else {
+//                    that.dispatchLeaveStageEvent();
+//                }
+//            });
+//
+//            window.addEventListener("mouseup", function (event) {
+//                if (that._isTouchDown && that.inOutOfCanvas(event)) {
+//                    that.dispatchLeaveStageEvent();
+//                }
+//                that._isTouchDown = false;
+//            });
         };
 
         HTML5TouchContext.prototype.addMouseListener = function () {

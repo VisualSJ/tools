@@ -99,7 +99,7 @@ var TestLayer2 = cc.Layer.extend({
 
     num:0,
     update: function(dt){
-
+        var arr, i;
         this.num++;
         if(this.num >= 300){
             this.num = 0;
@@ -107,16 +107,30 @@ var TestLayer2 = cc.Layer.extend({
         }
         switch(this.status){
             case "rotate":
-                this.rotate(dt);
+                arr = this.fishList;
+                for(i=0; i<arr.length; i++){
+                    arr[i].rotation += 1.2;
+                }
                 break;
             case "move":
-                this.move(dt);
+                arr = this.fishList;
+                for(i=0; i<arr.length; i++){
+                    arr[i].x += 0.16;
+                }
                 break;
             case "scale":
-                this.scale(dt);
+                arr = this.fishList;
+                for(i=0; i<arr.length; i++){
+                    arr[i].scaleX += 0.0034;
+                }
                 break;
             case "all":
-                this.all(dt);
+                arr = this.fishList;
+                for(i=0; i<arr.length; i++){
+                    arr[i].rotation += 1.2;
+                    arr[i].x += 0.16;
+                    arr[i].scaleX += 0.0034;
+                }
         }
 
     },
@@ -128,36 +142,6 @@ var TestLayer2 = cc.Layer.extend({
             this.removeChild(arr[i]);
         }
         arr.length = 0;
-    },
-
-    rotate: function(){
-        var arr = this.fishList;
-        for(var i=0; i<arr.length; i++){
-            arr[i].rotation += 1.2;
-        }
-    },
-
-    move: function(){
-        var arr = this.fishList;
-        for(var i=0; i<arr.length; i++){
-            arr[i].x += 0.16;
-        }
-    },
-
-    scale: function(){
-        var arr = this.fishList;
-        for(var i=0; i<arr.length; i++){
-            arr[i].scaleX += 0.0034;
-        }
-    },
-
-    all: function(){
-        var arr = this.fishList;
-        for(var i=0; i<arr.length; i++){
-            arr[i].rotation += 1.2;
-            arr[i].x += 0.16;
-            arr[i].scaleX += 0.0034;
-        }
     }
 });
 

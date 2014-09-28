@@ -4,13 +4,8 @@
     <meta charset="utf-8">
     <title>Cocos2d-html5 Hello World test</title>
     <meta name="viewport"
-          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
+          content="width=480, height=720,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
 
-    <meta name="full-screen" content="true"/>
-    <meta name="screen-orientation" content="portrait"/>
-    <meta name="x5-fullscreen" content="true"/>
-    <meta name="360-fullscreen" content="true"/>
     <style>
         body, canvas, div {
             -moz-user-select: none;
@@ -41,19 +36,19 @@
 <button class="btn" id="move">move</button>
 <button class="btn" id="scale">scale</button>
 <button class="btn" id="all">all</button>
-<canvas id="gameCanvas" width="2000" height="2000"></canvas>
+<canvas id="gameCanvas" width="480" height="720"></canvas>
 </body>
 </html>
 <script src="./cocos2d-html5/CCBoot.js"></script>
 <script>
     cc.game.onStart = function(){
-        var designSize = cc.size(2000, 2000);
+        var designSize = cc.size(480, 720);
 
         cc.loader.resPath = "res/";
 
         //load resources
         cc.LoaderScene.preload([res.fish], function () {
-            cc.director.runScene(new UpdateTest());
+            cc.director.runScene(new PhoneTest());
         }, this);
     };
     cc.game.run();

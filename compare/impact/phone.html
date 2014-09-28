@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Cocos2d-html5 Hello World test</title>
+	<title>Impact Game</title>
     <meta name="viewport"
-          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
+          content="width=480,height=720,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
 
     <meta name="full-screen" content="true"/>
     <meta name="screen-orientation" content="portrait"/>
     <meta name="x5-fullscreen" content="true"/>
     <meta name="360-fullscreen" content="true"/>
-    <style>
-        body, canvas, div {
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            -khtml-user-select: none;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        }
-    </style>
+	<style type="text/css">
+		html,body {
+			background-color: #333;
+			color: #fff;
+			font-family: helvetica, arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			font-size: 12pt;
+		}
+		
+		#canvas {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+		}
+	</style>
+
+	<script type="text/javascript" src="lib/impact/impact.js"></script>
+	<script type="text/javascript" src="lib/game/phone.js"></script>
 </head>
-<body style="padding:0; margin: 0; background: #000;">
+<body style="width: 2000px; height: 2000px;">
 <style>
     #fps{color: #fff;z-index: 9999;font-size: 26px;position: absolute;}
     #info{color: #fff;z-index: 9999;font-size: 26px;position: absolute;left: 90px;}
@@ -41,20 +53,6 @@
 <button class="btn" id="move">move</button>
 <button class="btn" id="scale">scale</button>
 <button class="btn" id="all">all</button>
-<canvas id="gameCanvas" width="2000" height="2000"></canvas>
+	<canvas id="canvas" width="780" height="720" style="margin:0;"></canvas>
 </body>
 </html>
-<script src="./cocos2d-html5/CCBoot.js"></script>
-<script>
-    cc.game.onStart = function(){
-        var designSize = cc.size(2000, 2000);
-
-        cc.loader.resPath = "res/";
-
-        //load resources
-        cc.LoaderScene.preload([res.fish], function () {
-            cc.director.runScene(new UpdateTest());
-        }, this);
-    };
-    cc.game.run();
-</script>

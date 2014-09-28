@@ -47,14 +47,15 @@
 <script src="./cocos2d-html5/CCBoot.js"></script>
 <script>
     cc.game.onStart = function(){
-        var designSize = cc.size(2000, 2000);
+    var ua = window.navigator.userAgent.toLowerCase();
+    var designSize = cc.size(2000, 2000);
 
-        cc.loader.resPath = "res/";
+    cc.loader.resPath = "res/";
 
-        //load resources
-        cc.LoaderScene.preload([res.fish], function () {
-            cc.director.runScene(new UpdateTest());
-        }, this);
-    };
-    cc.game.run();
+    //load resources
+    cc.LoaderScene.preload([res.fish], function () {
+        cc.director.runScene(new TestScene());
+    }, this);
+};
+cc.game.run();
 </script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<img id="img" src="./res/Normal/CloseNormal.png">
+<canvas id="canvas" width="200" height="300" style="border: 1px solid #000;"></canvas>
+</body>
+</html>
+<script>
+    var img = document.getElementById("img");
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext( "2d" );
+
+    context.fillStyle = "rgb(" + 0 + "," + 100 + "," + 0 + ")";
+    context.fillRect(0, 0, 200, 300);
+
+    var c = document.createElement("canvas");
+    c.width = 20;
+    c.height = 20;
+    var t = c.getContext( "2d" );
+    t.fillStyle = "rgb(" + 100 + "," + 0 + "," + 0 + ")";
+    t.fillRect(0, 0, 20, 20);
+
+    context.globalCompositeOperation = "multiply";
+    context.drawImage(c, 0, 0, 20, 20);
+
+    var data = context.getImageData(0,0,1,1)['data'];
+    alert(data[0] + " " + data[1] + " " + data[2] + " " + data[3])
+</script>

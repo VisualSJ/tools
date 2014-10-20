@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=480,height=720,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <meta name="full-screen" content="true"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+</head>
+<body>
+<style>
+    html,body{background: #000;padding:0;margin:0;}
+    #fps{color: #fff;z-index: 9999;font-size: 26px;position: absolute;}
+    #info{color: #fff;z-index: 9999;font-size: 26px;position: absolute;left: 90px;}
+    .btn{height: 30px;position: absolute;z-index: 9999;left: 0;font-size: 20px;}
+    #addition{top: 40px;width: 30px;}
+    #subtraction{top: 80px;width: 30px;}
+    #rotate{top: 120px;width: 130px;}
+    #move{top: 160px;width: 130px;}
+    #scale{top: 200px;width: 130px;}
+    #all{top: 240px;width: 130px;}
+</style>
+<div id="fps">000</div>
+<div id="info">Unknown</div>
+<button class="btn" id="addition">+</button>
+<button class="btn" id="subtraction">-</button>
+<button class="btn" id="rotate">rotate</button>
+<button class="btn" id="move">move</button>
+<button class="btn" id="scale">scale</button>
+<button class="btn" id="all">all</button>
+<canvas id="gameCanvas" width="2000" height="2000"></canvas>
+<!--<script src="./harbors/Entrance.js"></script>-->
+<script src="harbors.min.js"></script>
+</body>
+</html>
+<script>
+
+    var TestScene = [
+        {a: 10, b: 20}, //200
+        {a: 15, b: 30}, //450
+        {a: 20, b: 40}, //800
+        {a: 25, b: 50}, //1250
+        {a: 30, b: 60}, //1800
+        {a: 35, b: 70}, //2450
+        {a: 40, b: 80}, //3200
+    ];
+
+    h.setOption({
+        id: "gameCanvas"
+    });
+    h.init();
+
+    var fishList = [];
+
+    var level = 0;
+    var addition = document.getElementById("addition");
+    if(addition){
+        addition.addEventListener("click", function(){
+            level++;
+            if(TestScene.length <= level) level = TestScene.length - 1;
+            createFish();
+        }, false);
+    }
+    var subtraction = document.getElementById("subtraction");
+    if(subtraction){
+        subtraction.addEventListener("click", function(){
+            level--;
+            if(level <= 0) level = 0;
+            createFish();
+        }, false);
+    }
+    var rotateBtn = document.getElementById("rotate");
+    if(rotateBtn){
+        rotateBtn.addEventListener("click", function(){
+            createFish();
+            rotate();
+        }, false);
+    }
+    var moveBtn = document.getElementById("move");
+    if(moveBtn){
+        moveBtn.addEventListener("click", function(){
+            createFish();
+            move();
+        }, false);
+    }
+    var scaleBtn = document.getElementById("scale");
+    if(scaleBtn){
+        scaleBtn.addEventListener("click", function(){
+            createFish();
+            scale();
+        }, false);
+    }
+    var allBtn = document.getElementById("all");
+    if(allBtn){
+        allBtn.addEventListener("click", function(){
+            createFish();
+            all();
+        }, false);
+    }
+
+    var infoElem = document.getElementById("info");
+    var ccc = h("#canvas");
+    var createFish = function(){
+        fishList.forEach(function(item){
+            ccc.remove(item);
+        });
+
+        var a = TestScene[level].a;
+        var b = TestScene[level].b;
+        var totalNum = a * b;
+        infoElem && (infoElem.innerHTML = totalNum);
+
+        for(var i=0;i<totalNum;i++){
+            var x = (i % a) * 50;
+            var y = (i / a | 0) * 25;
+            var tmp = h("@node").set({
+                x: x,
+                y: y,
+                backgroundImage: "../impact/tools/anim1.png",
+                width: 50,
+                height:26
+            });
+            ccc.append(tmp);
+            fishList.push(tmp);
+
+        }
+    };
+    createFish();
+
+    var rotate = function(){
+        for(var i=0; i<fishList.length; i++){
+            fishList[i].to({
+                rotate: 360
+            }, 5000);
+        }
+    };
+
+    var move = function(){
+        for(var i=0; i<fishList.length; i++){
+            fishList[i].to({
+                x: fishList[i].get("x") + 50
+            }, 5000);
+        }
+    };
+
+    var scale = function(){
+        for(var i=0; i<fishList.length; i++){
+            fishList[i].to({
+                scaleX: 2
+            }, 5000);
+        }
+    };
+
+    var all = function(){
+        for(var i=0; i<fishList.length; i++){
+            fishList[i].to({
+                rotate: 360,
+                x: fishList[i].get("x") + 50,
+                scaleX: 2
+            }, 5000);
+        }
+    };
+
+</script>

@@ -3,10 +3,10 @@
 	"remoteManifestUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene2/version_dev.manifest",
 	"remoteManifestUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene2/project_dev.manifest",
 	"version" : "1.1.0",
-	"engineVersion" : "Cocos2d-JS 3.0 dev",
+	"engineVersion" : "Cocos2d-JS 3.x dev",
 
 	"assets" : {
-		"Images/background2.jpg" : {
+		"Images/assetMgrBackground2.png" : {
 			"md5" : "...."
 		},
 		"Images/ball.png" : {

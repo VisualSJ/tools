@@ -6,11 +6,11 @@
 	"groupVersions" : {
 		"1" : "1.0.0"
 	},
-	"engineVersion" : "3.0 beta",
+	"engineVersion" : "3.x",
 
 	"assets" : {
 		"background" : {
-			"path" : "Images/background3.png",
+			"path" : "Images/assetMgrBackground3.png",
 			"md5" : "....",
 			"group" : "1"
 		}

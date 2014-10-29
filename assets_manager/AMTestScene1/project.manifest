@@ -10,7 +10,7 @@
 
 	"assets" : {
 		"background" : {
-			"path" : "Images/background1.jpg",
+			"path" : "Images/assetMgrBackground1.jpg",
 			"md5" : "....",
 			"group" : "1"
 		}

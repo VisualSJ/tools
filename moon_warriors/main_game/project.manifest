@@ -1,0 +1,141 @@
+{
+	"packageUrl" : "http://tools.itharbors.com/moon_warriors/main_game/",
+	"remoteManifestUrl" : "http://tools.itharbors.com/moon_warriors/main_game/project.manifest",
+	"remoteVersionUrl" : "http://tools.itharbors.com/moon_warriors/main_game/version.manifest",
+	"version" : "1.0.0",
+	"engineVersion" : "3.1",
+
+	"assets" : {
+		"res/arial-14.fnt" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/arial-14.GlyphProject" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/arial-14.png" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/b01.plist" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/b01.png" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/explode.plist" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/explosion.plist" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/explosion.png" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/gameover.png" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/level01.tmx" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/textureOpaquePack.plist" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/textureOpaquePack.png" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/music/bgMusic.mp3" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/music/bgMusic.ogg" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/music/explodeEffect.mp3" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/music/explodeEffect.ogg" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/music/fireEffect.mp3" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/music/fireEffect.ogg" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/music/shipDestroyEffect.mp3" : {
+			"md5" : "1.0.0"
+		},
+
+		"res/music/shipDestroyEffect.ogg" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/Background.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/Bullet.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/Effect.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/Enemy.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/Explosion.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/GameLayer.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/GameOver.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/HitEffect.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/LevelManager.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/Resource.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/Ship.js" : {
+			"md5" : "1.0.0"
+		},
+
+		"src/SparkEffect.js" : {
+			"md5" : "1.0.0"
+		}
+	},
+    
+    "searchPaths" : [
+    	"res/"
+    ]
+}

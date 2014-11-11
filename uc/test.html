@@ -14,6 +14,7 @@
 
     var piToRe = Math.PI / 180;
     var rotate = 0;
+    var bool = true;
     //测试版本9.9.7.500
     //刷新后会有几率出现裁剪位置错误的问题
     var test_1 = function(){
@@ -66,13 +67,16 @@
 
         if(++rotate > 360){
             rotate = 0;
+            bool = false;
         }
-        var Cos = Math.cos(-rotate * piToRe);
-        var Sin = Math.sin(-rotate * piToRe);
+        if(bool){
+            var Cos = Math.cos(-rotate * piToRe);
+            var Sin = Math.sin(-rotate * piToRe);
 
-        ctx.setTransform(Cos, Sin, -Sin, Cos, 300, 300);
-        triangle({x: 0, y: 0}, 140);
-        ctx.clip();
+            ctx.setTransform(Cos, Sin, -Sin, Cos, 300, 300);
+            triangle({x: 0, y: 0}, 140);
+            ctx.clip();
+        }
 
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.fillRect(0, 0, 600, 600);

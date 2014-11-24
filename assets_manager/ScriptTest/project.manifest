@@ -1,0 +1,16 @@
+{
+	"packageUrl" : "http://tools.itharbors.com/assets_manager/ScriptTest/",
+	"remoteManifestUrl" : "http://tools.itharbors.com/assets_manager/ScriptTest/project.manifest",
+	"remoteVersionUrl" : "http://tools.itharbors.com/assets_manager/ScriptTest/version.manifest",
+	"version" : "1.1.0",
+	"engineVersion" : "3.x",
+
+	"assets" : {
+		"ScriptTestTempFile.js" : {
+			"md5" : "...."
+		}
+	},
+    
+    "searchPaths" : [
+    ]
+}

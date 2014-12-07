@@ -24,8 +24,7 @@
         "src/game/Enemies.js",
         "src/game/Buddy.js",
 
-        "src/game/House.js",
-        "src/game/ScoreLayer.js"
+        "src/game/House.js"
 
     ]
 }

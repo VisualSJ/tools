@@ -98,7 +98,7 @@ var TestController = cc.LayerGradient.extend({
 
         var hotupdate = new cc.MenuItemFont("Script updated with jsb.AssetsManager");
         hotupdate.fontSize = 18;
-        hotupdate.x = winSize.width - toggleAutoTestItem.width / 2 - 10;
+        hotupdate.x = winSize.width - hotupdate.width / 2 - 10;
         hotupdate.y = 45;
         var subItem1 = new cc.MenuItemFont("Automated Test: Off");
         subItem1.fontSize = 18;

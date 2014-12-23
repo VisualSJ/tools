@@ -91,15 +91,15 @@ var TestController = cc.LayerGradient.extend({
         director = cc.director;
         winSize = director.getWinSize();
 
+        var hotupdate = new cc.LabelTTF("Script updated with AssetsManager", "Arial", 16, cc.size(220, 40));
+        hotupdate.x = winSize.width - 60;
+        hotupdate.y = 65;
+
         // add close menu
         var closeItem = new cc.MenuItemImage(s_pathClose, s_pathClose, this.onCloseCallback, this);
         closeItem.x = winSize.width - 30;
-	    closeItem.y = winSize.height - 30;
+        closeItem.y = winSize.height - 30;
 
-        var hotupdate = new cc.MenuItemFont("Script updated with jsb.AssetsManager");
-        hotupdate.fontSize = 18;
-        hotupdate.x = winSize.width - hotupdate.width / 2 - 10;
-        hotupdate.y = 45;
         var subItem1 = new cc.MenuItemFont("Automated Test: Off");
         subItem1.fontSize = 18;
         var subItem2 = new cc.MenuItemFont("Automated Test: On");
@@ -108,13 +108,13 @@ var TestController = cc.LayerGradient.extend({
         var toggleAutoTestItem = new cc.MenuItemToggle(subItem1, subItem2);
         toggleAutoTestItem.setCallback(this.onToggleAutoTest, this);
         toggleAutoTestItem.x = winSize.width - toggleAutoTestItem.width / 2 - 10;
-	    toggleAutoTestItem.y = 20;
+        toggleAutoTestItem.y = 20;
         if( autoTestEnabled )
             toggleAutoTestItem.setSelectedIndex(1);
 
-        var menu = new cc.Menu(closeItem, hotupdate, toggleAutoTestItem);//pmenu is just a holder for the close button
+        var menu = new cc.Menu(closeItem, toggleAutoTestItem);//pmenu is just a holder for the close button
         menu.x = 0;
-	    menu.y = 0;
+        menu.y = 0;
 
         // add menu items for tests
         this._itemMenu = new cc.Menu();//item menu is where all the label goes, and the one gets scrolled
@@ -124,7 +124,7 @@ var TestController = cc.LayerGradient.extend({
             var menuItem = new cc.MenuItemLabel(label, this.onMenuCallback, this);
             this._itemMenu.addChild(menuItem, i + 10000);
             menuItem.x = winSize.width / 2;
-	        menuItem.y = (winSize.height - (i + 1) * LINE_SPACE);
+            menuItem.y = (winSize.height - (i + 1) * LINE_SPACE);
 
             // enable disable
             if ( !cc.sys.isNative) {
@@ -147,11 +147,12 @@ var TestController = cc.LayerGradient.extend({
         }
 
         this._itemMenu.width = winSize.width;
-	    this._itemMenu.height = (testNames.length + 1) * LINE_SPACE;
+        this._itemMenu.height = (testNames.length + 1) * LINE_SPACE;
         this._itemMenu.x = curPos.x;
-	    this._itemMenu.y = curPos.y;
+        this._itemMenu.y = curPos.y;
         this.addChild(this._itemMenu);
         this.addChild(menu, 1);
+        this.addChild(hotupdate, 1);
 
         // 'browser' can use touches or mouse.
         // The benefit of using 'touches' in a browser, is that it works both with mouse events or touches events
@@ -182,7 +183,7 @@ var TestController = cc.LayerGradient.extend({
     },
     onEnter:function(){
         this._super();
-	    this._itemMenu.y = TestController.YOffset;
+        this._itemMenu.y = TestController.YOffset;
     },
     onMenuCallback:function (sender) {
         TestController.YOffset = this._itemMenu.y;
@@ -216,7 +217,7 @@ var TestController = cc.LayerGradient.extend({
         if( newY > ((testNames.length + 1) * LINE_SPACE - winSize.height))
             newY = ((testNames.length + 1) * LINE_SPACE - winSize.height);
 
-	    this._itemMenu.y = newY;
+        this._itemMenu.y = newY;
     }
 });
 TestController.YOffset = 0;

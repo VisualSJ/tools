@@ -109,7 +109,12 @@
     <header class="a-header">
         <div class="main">
             <div class="background"></div>
-            <div class="img">
+            <div class="img" style="text-align: center;">
+                <style>
+                    .img input{padding: 10px 15px;margin: 0 20px;}
+                </style>
+                <input type="button" value="显示菜单" onclick="showOptionMenu()"/>
+                <input type="button" value="隐藏菜单" onclick="hideOptionMenu()"/>
                 <!--google广告代码-->
                 <!--为防止误点以及误操作，注释了以下代码，在需要的时候清删除注释-->
                 <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
@@ -145,8 +150,19 @@
             "desc":'最近微信刷屏的游戏，喵的太贱了，快来感受下吧',
             "title":"最近微信刷屏的游戏《来自喵星的你》，喵的太贱了，快来感受下吧"
         };
+        window.wxReady = false;
 
         (function(ws){
+            ws.showOptionMenu = function(){
+                if(window.wxReady)
+                    return;
+                wx.showOptionMenu();
+            };
+            ws.hideOptionMenu = function(){
+                if(window.wxReady)
+                    return;
+                wx.hideOptionMenu();
+            };
             ws.shareMessage = function(title, message){
                 title = title || wxFriend.title;
                 message = message || wxFriend.desc;
@@ -221,21 +237,15 @@
                 'onMenuShareWeibo',
                 'hideMenuItems',
                 'showMenuItems',
-                'translateVoice',
-                'startRecord',
-                'stopRecord',
-                'onRecordEnd',
-                'playVoice',
                 'getNetworkType',
                 'hideOptionMenu',
                 'showOptionMenu',
-                'closeWindow',
-                'scanQRCode',
-                'chooseWXPay'
+                'closeWindow'
             ]
         });
 
         wx.ready(function(){
+            window.wxReady = true;
             //setup to share
             shareMessage();
 
@@ -247,11 +257,11 @@
                             wx.closeWindow();
                         }
                     } else if(networkType == "3g"){
-                        alert("您正在使用4G网络访问喵,速度还行吗？");
+                        alert("您正在使用3G网络访问喵,速度还行吗？");
                     } else if(networkType == "4g"){
                         alert("哇，您正在使用4G网络访问喵，快吗？");
                     } else if(networkType == "wifi"){
-                        alert("您当前正在使用wifi, 不用担心流量哟！");
+                        alert("您当前正在使用wifi, 喵喵再也不用担心流量了哟！");
                     } else {
                         alert("来自星星的你，使用的是什么网络呢？");
                     }

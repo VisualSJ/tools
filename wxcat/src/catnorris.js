@@ -39,6 +39,7 @@ var UI = {
         if (!cc.sys.isNative) {
             document.title = window.wxData.desc = "喵星刷屏！喵获得"+UI.score+"分，在众喵中排名"+(0|(percent*100))+"%，尼能超过喵吗！";
             document.title = window.wxFriend.desc = "我拿了"+UI.score+"分，战胜了"+ UI.pg +"个汪，超越了"+(0|(percent*100))+"％的好友！你能超过我吗";
+            window.shareMessage();
         }
         lb.strokeStyle = cc.color(0,0,0);
         if (cc.sys.isNative)

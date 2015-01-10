@@ -154,12 +154,12 @@
 
         (function(ws){
             ws.showOptionMenu = function(){
-                if(window.wxReady)
+                if(!window.wxReady)
                     return;
                 wx.showOptionMenu();
             };
             ws.hideOptionMenu = function(){
-                if(window.wxReady)
+                if(!window.wxReady)
                     return;
                 wx.hideOptionMenu();
             };

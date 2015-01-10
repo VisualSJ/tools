@@ -90,7 +90,7 @@
     });
 
     wx.ready(function(){
-        console.log("success");
+        alert("success");
 
         wx.onMenuShareTimeline({
             title: '测试', // 分享标题
@@ -118,7 +118,7 @@
     });
 
     wx.error(function(res){
-        console.log("success");
+        alert("success");
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
 
     });
@@ -126,6 +126,7 @@
     var 拍照 = function(){
         wx.chooseImage({
             success: function (res) {
+                alert("photo");
                 var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
             }
         });
@@ -139,6 +140,7 @@
     };
 
     var 定位 = function(){
+        alert("photo");
 
         wx.getLocation({
             timestamp: 0, // 位置签名时间戳，仅当需要兼容6.0.2版本之前时提供

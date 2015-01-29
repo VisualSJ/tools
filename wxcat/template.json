@@ -1,0 +1,140 @@
+{
+	"templateId": 1,
+
+	"templateVars": {
+        "hitTxt": {
+            "type": "DIRECTDATA",
+            "desc": "攻击提示文字",
+            "value": "猛击僵尸"
+        },
+        "endTxt": {
+            "type": "STRING",
+            "desc": "",
+            "variables": ["number", "percent", "score"],
+            "value": "地球太危险我要回喵星！\n恭喜喵战胜了%d个汪，\n超越了%d％的好友！\n获得了%d分！"
+        },
+
+        "cat_attack": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/loli/attack.png",
+            "originW":  60,
+            "originH":  54
+        },
+        "cat_dead": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/loli/dead.png",
+            "originW":  60,
+            "originH":  54
+        },
+        "cat_idle": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/loli/idle.png",
+            "originW":  60,
+            "originH":  54
+        },
+        "cat_walk": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/loli/idle.png",
+            "originW":  60,
+            "originH":  54
+        },
+
+        "doge_attack": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/wolf/attack.png",
+            "originW":  66,
+            "originH":  42
+        },
+        "doge_charge": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/wolf/charge.png",
+            "originW":  66,
+            "originH":  42
+        },
+        "doge_dead": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/wolf/dead.png",
+            "originW":  66,
+            "originH":  42
+        },
+        "doge_hurt": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/wolf/hurt.png",
+            "originW":  66,
+            "originH":  42
+        },
+        "doge_walk": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/wolf/walk.png",
+            "originW":  66,
+            "originH":  42
+        },
+
+        "husky_attack": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/zombie/attack.png",
+            "originW":  70,
+            "originH":  42
+        },
+        "husky_charge": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/zombie/charge.png",
+            "originW":  70,
+            "originH":  42
+        },
+        "husky_dead": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/zombie/dead.png",
+            "originW":  70,
+            "originH":  42
+        },
+        "husky_hurt": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/zombie/hurt.png",
+            "originW":  70,
+            "originH":  42
+        },
+        "husky_walk": {
+            "type":     "IMAGE",
+            "texUrl":   "skin/zombie/walk.png",
+            "originW":  70,
+            "originH":  42
+        }
+	},
+
+	"scenes": {
+		"Game": {
+			"background": null,
+            "cat_attack": null,
+            "cat_idle": null,
+            "cat_dead": null,
+            "cat_walk": null,
+            "doge_attack": null,
+            "doge_charge": null,
+            "doge_dead": null,
+            "doge_hurt": null,
+            "doge_walk": null,
+            "husky_attack": null,
+            "husky_charge": null,
+            "husky_dead": null,
+            "husky_hurt": null,
+            "husky_walk": null
+		},
+		"EndUI": {
+			"win_label": {
+				"fillStyle":"#000",
+				"fontSize": 20
+			}
+		},
+		"ShareUI": {}
+	},
+
+	"share": {
+        "wechat": {
+            "appId":    "",
+            "imgUrl":   "icon.png",
+            "desc":     "最近微信刷屏的游戏，喵的太贱了，快来感受下吧",
+            "title":    "来自喵星的你"
+        }
+	}
+}

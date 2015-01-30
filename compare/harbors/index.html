@@ -50,6 +50,20 @@
         {a: 40, b: 80}, //3200
     ];
 
+    var fpsNum = 0;
+    function p(){
+        h.delay(function(){
+            fpsNum++;
+            p();
+        }, 1);
+    }
+    p();
+    var fps = document.getElementById("fps");
+    setInterval(function(){
+        fps.innerHTML = fpsNum;
+        fpsNum = 0;
+    }, 1000);
+
     h.setOption({
         id: "gameCanvas"
     });
@@ -104,7 +118,7 @@
     }
 
     var infoElem = document.getElementById("info");
-    var ccc = h("#canvas");
+    var ccc = h();
     var createFish = function(){
         fishList.forEach(function(item){
             ccc.remove(item);
@@ -121,7 +135,7 @@
             var tmp = h("@node").set({
                 x: x,
                 y: y,
-                backgroundImage: "../impact/tools/anim1.png",
+                image: "../impact/tools/anim1.png",
                 width: 50,
                 height:26
             });

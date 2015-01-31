@@ -1,0 +1,22 @@
+{
+	"packageUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene2/",
+	"remoteManifestUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene2/version_dev.manifest",
+	"remoteManifestUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene2/project_dev.manifest",
+	"version" : "1.2.0",
+	"engineVersion" : "Cocos2d-JS 3.x dev",
+
+	"assets" : {
+		"Images/assetMgrBackground2.png" : {
+			"md5" : "...."
+		},
+		"Images/ball.png" : {
+			"md5" : "..."
+		},
+		"Images/blocks.png" : {
+			"md5" : "..."
+		}
+	},
+    
+    "searchPaths" : [
+    ]
+}

@@ -121,49 +121,59 @@
 
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
-    wx.config({
-        debug: true,
-        appId: 'wx5fe4775a6bf0b5c1',
-        timestamp: 1422237087,
-        nonceStr: 'VQhYOUJRz6RolHqN',
-        signature: '6c3c3a663b887a14758cd0a28ed3de8d6f6377dd',
-        jsApiList: [
-            'checkJsApi',
-            'onMenuShareTimeline',
-            'onMenuShareAppMessage',
-            'onMenuShareQQ',
-            'onMenuShareWeibo',
-            'hideMenuItems',
-            'showMenuItems',
-            'hideAllNonBaseMenuItem',
-            'showAllNonBaseMenuItem',
-            'translateVoice',
-            'startRecord',
-            'stopRecord',
-            'onRecordEnd',
-            'playVoice',
-            'pauseVoice',
-            'stopVoice',
-            'uploadVoice',
-            'downloadVoice',
-            'chooseImage',
-            'previewImage',
-            'uploadImage',
-            'downloadImage',
-            'getNetworkType',
-            'openLocation',
-            'getLocation',
-            'hideOptionMenu',
-            'showOptionMenu',
-            'closeWindow',
-            'scanQRCode',
-            'chooseWXPay',
-            'openProductSpecificView',
-            'addCard',
-            'chooseCard',
-            'openCard'
-        ]
-    });
+
+    var url = window.location.href.replace(/#.+/, "");
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET","/wechat/signature?url=" + url,true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange=function(){
+        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+            var data = JSON.parse(xmlhttp.responseText);
+            wx.config({
+                debug: true,
+                appId: 'wx97722cd2036335d0',
+                timestamp: data.stamp,
+                nonceStr: data.noncestr,
+                signature: data.signature,
+                jsApiList: [
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onRecordEnd',
+                    'playVoice',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'downloadImage',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow',
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard'
+                ]
+            });
+        }
+    };
 </script>
 <script>
 wx.ready(function () {

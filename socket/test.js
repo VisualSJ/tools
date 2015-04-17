@@ -9,9 +9,7 @@ io.sockets.on('connection', function (socket) {
 
     socket.on("echotest", function(data, fn){
         socket.emit('message', "Received echotest: " + data);
-        console.log(123);
-        console.log(fn);
-        fn();
+        typeof fn ===  "function" && fn();
     });
 
 });

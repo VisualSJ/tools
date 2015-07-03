@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="monicaqin">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>run</title>
+</head>
+<body>
+
+<script src="http://jsapi.qq.com/get?api=x5gameplayer.run"></script>
+<script src="http://res.imtt.qq.com///activity/game/js/real/common11.js"></script>
+<script src="http://res.imtt.qq.com///activity/game/js/real/gameOpen11.js"></script>
+<script type="text/javascript">
+    (function(){
+                browser.x5gameplayer.run({
+                    gameId: "2466856218",
+                    engineName: "cocos-v3",
+                    localDebug: false,
+                    orientation : "portrait",
+                    gameName : "I'm MT Runtime Demo！",
+                    gameIconUrl : "http://tencent.cocosruntime.com/tencent/unittest/icon.png",
+                    runUrl: "http://tencent.cocosruntime.com/tencent/unittest/gameshare.html",
+                    gameUrl : "http://tencent.cocosruntime.com/tencent/unittest/gameshare.html",
+                    ext : JSON.stringify({
+                        enable_silent_download: true,
+                        packageName: "org.cocos2dx.MTProject",
+                        resUrl: "http://192.168.54.86:3003/MTProject/out/org.cocos2dx.MTProject/3/"
+                    })
+                });
+            }
+    )();
+
+</script>
+</body>
+</html>

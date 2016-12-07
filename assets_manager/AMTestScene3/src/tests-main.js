@@ -62,6 +62,9 @@ var TestScene = cc.Scene.extend({
         }
     },
     onMainMenuCallback:function () {
+        if (director.isPaused()) {
+            director.resume();
+        } 
         var scene = new cc.Scene();
         var layer = new TestController();
         scene.addChild(layer);
@@ -109,12 +112,23 @@ var TestController = cc.LayerGradient.extend({
         toggleAutoTestItem.setCallback(this.onToggleAutoTest, this);
         toggleAutoTestItem.x = winSize.width - toggleAutoTestItem.width / 2 - 10;
         toggleAutoTestItem.y = 20;
+        toggleAutoTestItem.setVisible(false);
         if( autoTestEnabled )
             toggleAutoTestItem.setSelectedIndex(1);
+
 
         var menu = new cc.Menu(closeItem, toggleAutoTestItem);//pmenu is just a holder for the close button
         menu.x = 0;
         menu.y = 0;
+
+        // sort the test title
+        testNames.sort(function(first, second){
+            if (first.title > second.title)
+            {
+                return 1;
+            }
+            return -1;
+        });
 
         // add menu items for tests
         this._itemMenu = new cc.Menu();//item menu is where all the label goes, and the one gets scrolled
@@ -128,7 +142,7 @@ var TestController = cc.LayerGradient.extend({
 
             // enable disable
             if ( !cc.sys.isNative) {
-                if( 'opengl' in cc.sys.capabilities ){
+                if( cc._renderType !== cc.game.RENDER_TYPE_CANVAS ){
                     menuItem.enabled = (testNames[i].platforms & PLATFORM_HTML5) | (testNames[i].platforms & PLATFORM_HTML5_WEBGL);
                 }else{
                     menuItem.setEnabled( testNames[i].platforms & PLATFORM_HTML5 );
@@ -156,7 +170,7 @@ var TestController = cc.LayerGradient.extend({
 
         // 'browser' can use touches or mouse.
         // The benefit of using 'touches' in a browser, is that it works both with mouse events or touches events
-        if ('touches' in cc.sys.capabilities)
+        if ('touches' in cc.sys.capabilities) {
             cc.eventManager.addListener({
                 event: cc.EventListener.TOUCH_ALL_AT_ONCE,
                 onTouchesMoved: function (touches, event) {
@@ -166,6 +180,7 @@ var TestController = cc.LayerGradient.extend({
                     return true;
                 }
             }, this);
+        }
         else if ('mouse' in cc.sys.capabilities) {
             cc.eventManager.addListener({
                 event: cc.EventListener.MOUSE,
@@ -179,11 +194,11 @@ var TestController = cc.LayerGradient.extend({
                     return true;
                 }
             }, this);
-       }
+        }
     },
     onEnter:function(){
         this._super();
-        this._itemMenu.y = TestController.YOffset;
+	    this._itemMenu.y = TestController.YOffset;
     },
     onMenuCallback:function (sender) {
         TestController.YOffset = this._itemMenu.y;
@@ -203,7 +218,13 @@ var TestController = cc.LayerGradient.extend({
         }, this);
     },
     onCloseCallback:function () {
-        window.history && window.history.go(-1);
+        if (cc.sys.isNative)
+        {
+            cc.game.end();
+        }
+        else {
+            window.history && window.history.go(-1);
+        }
     },
     onToggleAutoTest:function() {
         autoTestEnabled = !autoTestEnabled;
@@ -247,6 +268,14 @@ var testNames = [
         }
     },
     {
+        title:"BillBoard Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/BillBoardTest/BillBoardTest.js",
+        testScene:function () {
+            return new BillBoardTestScene();
+        }
+    },
+    {
         title:"Box2D Test",
         resource:g_box2d,
         platforms: PLATFORM_HTML5,
@@ -256,20 +285,19 @@ var testNames = [
         }
     },
     {
+        title:"Camera3D Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/Camera3DTest/Camera3DTest.js",
+        testScene:function () {
+            return new Camera3DTestScene();
+        }
+    },
+    {
         title:"Chipmunk Test",
         platforms: PLATFORM_ALL,
         linksrc:"src/ChipmunkTest/ChipmunkTest.js",
         testScene:function () {
             return new ChipmunkTestScene();
-        }
-    },
-    //"BugsTest",
-    {
-        title:"Click and Move Test",
-        platforms: PLATFORM_ALL,
-        linksrc:"src/ClickAndMoveTest/ClickAndMoveTest.js",
-        testScene:function () {
-            return new ClickAndMoveTestScene();
         }
     },
     {
@@ -290,12 +318,11 @@ var testNames = [
         }
     },
     {
-        title:"CocoStudio Test",
-        resource:g_cocoStudio,
-        platforms: PLATFORM_ALL,
-        linksrc:"",
+        title:"Component Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/ComponentTest/ComponentTest.js",
         testScene:function () {
-            return new CocoStudioTestScene();
+            return new ComponentTestScene();
         }
     },
     {
@@ -366,13 +393,21 @@ var testNames = [
         }
     },
     {
-        title:"Facebook SDK Test",
-        platforms: PLATFROM_ANDROID | PLATFROM_IOS | PLATFORM_HTML5,
-        linksrc:"src/FacebookTest/FacebookTestsManager.js",
+        title:"Native Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/NativeTest/NativeTest.js",
         testScene:function () {
-            return new FacebookTestScene();
+            return new NativeTestScene();
         }
     },
+    //{
+    //    title:"Facebook SDK Test",
+    //    platforms: PLATFROM_ANDROID | PLATFROM_IOS | PLATFORM_HTML5,
+    //    linksrc:"src/FacebookTest/FacebookTestsManager.js",
+    //    testScene:function () {
+    //        return new FacebookTestScene();
+    //    }
+    //},
     {
         title:"Font Test",
         resource:g_fonts,
@@ -418,11 +453,36 @@ var testNames = [
         }
     },
     {
+        title:"Light Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/LightTest/LightTest.js",
+        testScene:function () {
+            return new LightTestScene();
+        }
+    },
+    {
         title:"Loader Test",
         platforms: PLATFORM_ALL,
         linksrc:"src/LoaderTest/LoaderTest.js",
         testScene:function () {
             return new LoaderTestScene();
+        }
+    },
+    {
+        title:"MaterialSystem Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/MaterialSystemTest/MaterialSystemTest.js",
+        testScene:function () {
+            return new MaterialSystemTestScene();
+        }
+    },
+    {
+        title:"Memory Model Test",
+        resource:g_menu,
+        platforms: PLATFORM_JSB,
+        linksrc:"src/MemoryModelTest/MemoryModelTest.js",
+        testScene:function () {
+            return new MemoryModelTestScene();
         }
     },
     {
@@ -469,6 +529,13 @@ var testNames = [
         }
     },
     {
+        title:"Particle3D Test",
+        platforms: PLATFORM_JSB,
+        testScene:function () {
+            return new Particle3DTestScene();
+        }
+    },
+    {
         title:"Particle Test",
         platforms: PLATFORM_ALL,
         linksrc:"",
@@ -486,12 +553,27 @@ var testNames = [
         }
     },
     {
-        title:"Performance Test",
+        title:"PerformanceNow Tests",
         platforms: PLATFORM_ALL,
-        linksrc:"",
-        resource:g_performace,
+        linksrc:"src/PerformanceNowTest/PerformanceNowTest.js",
+        testScene:function() {
+            return new PerformanceNowTestScene();
+        }
+    },
+    {
+        title:"Physics3D Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/Physics3DTest/Physics3DTest.js",
         testScene:function () {
-            return new PerformanceTestScene();
+            return new Physics3DTestScene();
+        }
+    },
+    {
+        title:"NavMesh Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/NavMeshTest/NavMeshTest.js",
+        testScene:function () {
+            return new nextNavMeshTest();
         }
     },
     {
@@ -552,6 +634,22 @@ var testNames = [
         }
     },
     {
+        title:"Sprite3D Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/Sprite3DTest/Sprite3DTest.js",
+        testScene:function () {
+            return new Sprite3DTestScene();
+        }
+    },
+    {
+        title:"SpritePolygon Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/SpritePolygonTest/SpritePolygonTest.js",
+        testScene:function () {
+            return new SpritePolygonTestScene();
+        }
+    },
+    {
         title:"Sprite Test",
         resource:g_sprites,
         platforms: PLATFORM_ALL,
@@ -567,6 +665,14 @@ var testNames = [
         linksrc:"src/ExtensionsTest/S9SpriteTest/S9SpriteTest.js",
         testScene:function () {
             return new S9SpriteTestScene();
+        }
+    },
+    {
+        title:"Terrain Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/TerrainTest/TerrainTest.js",
+        testScene:function () {
+            return new TerrainTestScene();
         }
     },
     {
@@ -630,6 +736,14 @@ var testNames = [
         }
     },
     {
+        title:"Vibrate Test",
+        platforms: PLATFORM_JSB,
+        linksrc:"src/VibrateTest/VibrateTest.js",
+        testScene:function () {
+            return new VibrateTestScene();
+        }
+    },
+    {
         title:"cocos2d JS Presentation",
         platforms: PLATFORM_JSB,
         linksrc:"src/Presentation/Presentation.js",
@@ -643,6 +757,14 @@ var testNames = [
         linksrc:"src/XHRTest/XHRTest.js",
         testScene:function () {
             return new XHRTestScene();
+        }
+    },
+    {
+        title:"XMLHttpRequest send ArrayBuffer",
+        platforms: PLATFORM_ALL,
+        linksrc:"src/XHRTest/XHRArrayBufferTest.js",
+        testScene:function () {
+            return new XHRArrayBufferTestScene();
         }
     }
 

@@ -1,0 +1,42 @@
+{
+    "boot_group": {
+        "md5": "ae4c28bfa27d712719ca2d04bdd7e51a", 
+        "name": "boot.zip", 
+        "size": 6260598
+    }, 
+    "description": "I'm MT Runtime Demo！", 
+    "design_resolution": {
+        "height": 1920, 
+        "policy": "SHOW_ALL", 
+        "width": 1280
+    }, 
+    "entry_file": {
+        "md5": "e1ce8239de829a2b5baf4985c0c2da3a", 
+        "name": "main.jsc", 
+        "size": 983
+    }, 
+    "game_name": "MTProject", 
+    "manifest_file": {
+        "md5": "713210c3374430176d3e4e664936aff8", 
+        "name": "manifest.json", 
+        "size": 1128
+    }, 
+    "orientation": "portrait", 
+    "package_name": "org.cocos2dx.MTProject", 
+    "project_json_file": {
+        "md5": "1b35959482e85f553b7aab09222b0744", 
+        "name": "project-runtime.json", 
+        "size": 311
+    }, 
+    "runtime_version": "cocos-v3", 
+    "security": {
+        "password": "unittest", 
+        "third_party": {
+            "chukong": {
+                "app_id": "373364737"
+            }
+        }
+    }, 
+    "version_code": 3, 
+    "version_name": "3.0.0"
+}

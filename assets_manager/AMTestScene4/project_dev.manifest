@@ -1,0 +1,11 @@
+{
+ "packageUrl" : "http://cocostudio.download.appget.cn/Cocos2D-X/",
+ "remoteManifestUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene4/project_dev.manifest", 
+ "remoteVersionUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene4/version_dev.manifest", 
+ "version" : "1.2.0", 
+ "engineVersion" : "3.x dev", 
+ "assets" : {
+     "cocos2d-x-3.8-rc0.zip" : { "md5" : "...", "compressed" : true }
+ },
+ "searchPaths" : [ ]
+}

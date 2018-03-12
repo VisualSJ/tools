@@ -1,0 +1,65 @@
+{
+	"packageUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene1/",
+	"remoteManifestUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene1/project_dev.manifest",
+	"remoteVersionUrl" : "http://tools.itharbors.com/assets_manager/AMTestScene1/version_dev.manifest",
+	"version" : "1.2.0",
+	"engineVersion" : "3.x dev",
+
+	"assets" : {
+		"Images/assetMgrBackground1.jpg" : {
+			"md5" : "....."
+		},
+		"Images/ball.png" : {
+			"md5" : "..."
+		},
+		"Images/blocks.png" : {
+			"md5" : "..."
+		},
+		"compressed.zip" : {
+			"md5" : "...",
+			"compressed" : true
+		},
+		"Images/Bird.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Daisy_Flower.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Mountain_Reflections.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Plitvice_National_Park.jpg" : {
+			"md5" : "..."
+		},
+		"Images/sakountala.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Snake_River.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Thunder.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Tranquil_Lagoon.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Tyrol.jpg" : {
+			"md5" : "..."
+		},
+		"Images/univ-lille1.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Yellow_Garden_Flowers.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Yellow_Lilly.jpg" : {
+			"md5" : "..."
+		},
+		"Images/Yellow_Tulips.jpg" : {
+			"md5" : "..."
+		}
+	},
+    
+    "searchPaths" : [
+    ]
+}

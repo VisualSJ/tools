@@ -1,0 +1,15 @@
+{
+  "name": "socket",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nohup node index > socket.log",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "VisualSJ",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^1.7.0"
+  }
+}
